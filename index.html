@@ -1,0 +1,3237 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DNA HERO · Character Turnaround · СССР 1950–60е · v21</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=Courier+Prime:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+/* ════════════════════════════════════════════════
+   RESET
+════════════════════════════════════════════════ */
+*, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
+html { scroll-behavior:smooth; }
+button { cursor:pointer; border:none; background:none; font-family:inherit; }
+
+
+
+/* ════════════════════════════════════════════════
+   THEME VARIABLES
+════════════════════════════════════════════════ */
+
+/* ── ЛИЧНОЕ ДЕЛО — worn manila dossier paper ── */
+body.t-delo {
+  --bg:    #BEB49A;
+  --s1:    #C8BEA4;
+  --s2:    #D2C9AE;
+  --s3:    #DDD5BB;
+  --s4:    #EAE3CD;
+  --s5:    #F0EAD7;
+  --border: rgba(50,30,8,.18);
+  --bh:    rgba(50,30,8,.42);
+  --text:  #120900;
+  --tm:    #4E3820;
+  --td:    #8A6E52;
+  --acc:   #8C1818;
+  --acc2:  rgba(140,24,24,.12);
+  --acc3:  #1A3C1A;
+  --grn:   #1A5C1A;
+  --byp:   #8C1818;
+  --r:     0px;
+  --fd:    'Special Elite', serif;
+  --fb:    'Courier Prime', 'Courier New', monospace;
+  --fm:    'Courier Prime', 'Courier New', monospace;
+}
+
+
+
+/* ════════════════════════════════════════════════
+   BODY BASE
+════════════════════════════════════════════════ */
+html, body { height:100%; }
+body {
+  height:100vh;
+  display:flex; flex-direction:column;
+  background:var(--bg); color:var(--text);
+  font-family:var(--fb); font-size:13px; line-height:1.6;
+  overflow:hidden;
+}
+
+/* ════════════════════════════════════════════════
+   HEADER
+════════════════════════════════════════════════ */
+.hdr { position:sticky; top:0; z-index:200; }
+
+/* ЛИЧНОЕ ДЕЛО header */
+body.t-delo .hdr {
+  background:var(--s2); border-bottom:2px solid var(--text);
+}
+body.t-delo .hdr-inner {
+  display:flex; flex-direction:column;
+}
+body.t-delo .hdr-main {
+  display:flex; align-items:center; gap:12px; padding:6px 18px;
+}
+body.t-delo .hdr-logo {
+  font-family:var(--fd); font-size:20px; color:var(--text); letter-spacing:.04em;
+}
+body.t-delo .hdr-sep {
+  width:1px; height:18px; background:var(--border);
+}
+body.t-delo .hdr-sub {
+  font-family:var(--fm); font-size:9.5px; color:var(--tm); letter-spacing:.1em; text-transform:uppercase;
+}
+body.t-delo .hdr-byp {
+  font-family:var(--fm); font-size:9px; letter-spacing:.08em;
+  padding:2px 8px; background:var(--acc2); border:1px solid rgba(140,24,24,.4);
+  color:var(--acc); text-transform:uppercase; display:none;
+}
+body.t-delo .hdr-byp.show { display:block; }
+body.t-delo .hdr-badge {
+  margin-left:auto; font-family:var(--fm); font-size:9px;
+  padding:2px 8px; border:1px solid var(--acc);
+  color:var(--acc); letter-spacing:.1em; text-transform:uppercase;
+}
+/* Кнопка лога — рядом с бейджем, ненавязчивая */
+#btnLog {
+  font-family:var(--fm); font-size:9px; letter-spacing:.09em; text-transform:uppercase;
+  padding:2px 7px; border:1px solid var(--border);
+  background:transparent; color:var(--td);
+  cursor:pointer; opacity:.35; transition:opacity .15s, border-color .15s, color .15s;
+  white-space:nowrap; flex-shrink:0;
+}
+#btnLog:hover { opacity:1; color:var(--acc); border-color:var(--acc); }
+#btnLog.has-events { opacity:.55; border-color:rgba(140,24,24,.35); color:var(--tm); }
+#btnLog.has-events:hover { opacity:1; color:var(--acc); border-color:var(--acc); }
+/* ════════════════════════════════════════════════
+   LAYOUT
+════════════════════════════════════════════════ */
+.layout { display:grid; grid-template-columns:340px 1fr; flex:1; min-height:0; }
+
+/* ════════════════════════════════════════════════
+   LEFT PANEL
+════════════════════════════════════════════════ */
+.lp {
+  border-right:1px solid var(--border);
+  display:flex; flex-direction:column;
+  background:var(--bg);
+  min-height:0;
+}
+.lp-scroll {
+  overflow-y:auto; overscroll-behavior:contain;
+  padding:0 13px 32px;
+  display:flex; flex-direction:column; gap:4px;
+  flex:1; min-height:0;
+}
+
+
+/* ════════════════════════════════════════════════
+   SECTION HEADERS
+════════════════════════════════════════════════ */
+.sh {
+  font-family:var(--fm); font-size:9.5px; letter-spacing:.14em;
+  color:var(--td); text-transform:uppercase;
+  padding:14px 6px 5px;
+  border-top:1px solid var(--border); margin-top:2px;
+}
+.sh:first-child { border-top:none; }
+.sh-bypass {
+  font-family:var(--fm); font-size:9.5px; letter-spacing:.14em;
+  color:rgba(140,24,24,.55); text-transform:uppercase;
+  padding:14px 6px 5px;
+  border-top:1px solid rgba(140,24,24,.32); margin-top:2px;
+}
+.sh-bypass::before { content:'⚡ '; }
+
+/* ЛИЧНОЕ ДЕЛО sections */
+body.t-delo .sh {
+  font-family:var(--fm); font-size:9px; color:var(--tm);
+  letter-spacing:.12em; padding:12px 4px 5px;
+  border-top:1px dotted var(--bh);
+}
+body.t-delo .sh:first-child { border-top:none; }
+body.t-delo .sh::before { content:'— '; }
+body.t-delo .sh-bypass {
+  border-top:1px dotted rgba(140,24,24,.5); color:var(--acc);
+  font-family:var(--fm); font-size:9px; padding:12px 4px 5px;
+}
+
+/* ════════════════════════════════════════════════
+   COLLAPSIBLE SECTIONS
+════════════════════════════════════════════════ */
+.sh.collapsible, .sh-bypass.collapsible { cursor:pointer; user-select:none; display:flex; flex-wrap:wrap; align-items:baseline; }
+.sh-title-row { display:contents; }
+.sh-body { display:flex; flex-direction:column; gap:4px; }
+.sh-body.sh-hidden { display:none; }
+.sh-arr { margin-left:6px; padding-left:2px; font-size:9px; opacity:.5; transition:transform .12s; flex-shrink:0; align-self:center; }
+.sh.collapsed .sh-arr, .sh-bypass.collapsed .sh-arr { transform:rotate(-90deg); }
+.sh-mod { width:5px; height:5px; border-radius:50%; background:var(--acc); display:none; margin-left:5px; margin-right:2px; flex-shrink:0; opacity:.75; align-self:center; }
+.sh-bypass.collapsible .sh-mod { background:rgba(140,24,24,.75); }
+.sh-mod.on { display:inline-block; }
+.sh-mod.hide-by-preview { display:none !important; }
+
+/* collapsed section value preview —
+   sits inline after title when short, wraps to next line when long */
+.sh-preview {
+  font-family:var(--fm); font-size:9px; letter-spacing:.04em;
+  color:var(--text); font-weight:700;
+  padding-left:7px;
+  flex: 0 1 auto;
+  min-width:0;
+  white-space:nowrap;
+  overflow:hidden; max-width:0; opacity:0; pointer-events:none;
+  transition:opacity .12s;
+}
+.sh.collapsed .sh-preview:not(:empty),
+.sh-bypass.collapsed .sh-preview:not(:empty) {
+  flex: 1 1 auto;
+  min-width:60px;
+  max-width:100%;
+  white-space:normal;
+  word-break:break-word;
+  opacity:1; pointer-events:auto;
+}
+
+/* toggle-all button + Личное дело — одна строка, статичная над скроллом */
+.lp-toggle-all {
+  padding:12px 13px 8px;
+  display:flex; align-items:center; gap:8px;
+  flex-shrink:0;
+  background:var(--s1);
+  border-bottom:1px solid var(--border);
+  box-shadow:0 2px 6px rgba(0,0,0,.12);
+}
+.lp-toggle-all button {
+  font-family:var(--fm); font-size:16px;
+  color:var(--td); background:none; border:1px solid var(--border);
+  cursor:pointer; padding:3px 8px; line-height:1;
+  opacity:.5; transition:opacity .15s, color .15s, border-color .15s, background .15s;
+}
+.lp-toggle-all button:hover { opacity:1; color:var(--text); border-color:var(--bh); }
+.lp-toggle-all button.sections-open {
+  color:var(--acc); border-color:rgba(140,24,24,.45); opacity:1;
+  background:var(--acc2);
+}
+
+
+
+/* ════════════════════════════════════════════════
+   FIELD / LABEL
+════════════════════════════════════════════════ */
+.field { display:flex; flex-direction:column; gap:4px; }
+.flabel { font-size:11px; color:var(--tm); padding:0 2px; }
+body.t-delo .flabel { font-family:var(--fm); font-size:10px; letter-spacing:.05em; }
+.flabel-byp { color:rgba(140,24,24,.55); font-size:10px; }
+
+/* ════════════════════════════════════════════════
+   TEXTAREA
+════════════════════════════════════════════════ */
+textarea {
+  background:var(--s3); border:1px solid var(--border);
+  border-radius:var(--r); color:var(--text);
+  font-family:var(--fb); font-size:12px;
+  padding:8px 10px; resize:vertical; outline:none;
+  min-height:56px; transition:border-color .15s; width:100%;
+}
+textarea:focus { border-color:var(--bh); }
+textarea::placeholder { color:var(--td); }
+body.t-delo textarea {
+  background:var(--s5); border:none;
+  border-bottom:1px dotted var(--bh);
+  font-family:var(--fm); padding:6px 4px;
+}
+
+/* ════════════════════════════════════════════════
+   CHIPS
+════════════════════════════════════════════════ */
+.chips { display:flex; flex-wrap:wrap; gap:5px; }
+.chip {
+  font-family:var(--fm); font-size:10.5px;
+  padding:4px 10px; border-radius:var(--r);
+  border:1px solid var(--border); background:var(--s2); color:var(--tm);
+  cursor:pointer; transition:background-color .12s, border-color .12s, color .12s; user-select:none; white-space:nowrap;
+}
+.chip:hover { border-color:var(--bh); color:var(--text); }
+.chip.on {
+  background:var(--acc2); border-color:rgba(140,24,24,.4); color:var(--acc);
+}
+.chip.on-teal {
+  background:rgba(26,60,26,.1); border-color:rgba(26,60,26,.35); color:var(--acc3);
+}
+.chip.on-byp {
+  background:rgba(140,24,24,.12); border-color:rgba(140,24,24,.45); color:var(--byp);
+}
+
+/* ЛИЧНОЕ ДЕЛО chips */
+body.t-delo .chip {
+  font-family:var(--fm); font-size:10px;
+  border:1px solid var(--border); background:var(--s3); color:var(--tm); padding:3px 9px;
+}
+body.t-delo .chip:hover { background:var(--s4); color:var(--text); }
+body.t-delo .chip.on { background:var(--text); color:var(--s4); border-color:var(--text); }
+body.t-delo .chip.on:hover { background:var(--text); color:var(--s4); border-color:var(--text); }
+body.t-delo .chip.on-teal { background:var(--acc3); color:var(--s4); border-color:var(--acc3); }
+body.t-delo .chip.on-teal:hover { background:var(--acc3); color:var(--s4); border-color:var(--acc3); }
+body.t-delo .chip.on-byp { background:var(--acc); color:var(--s4); border-color:var(--acc); }
+body.t-delo .chip.on-byp:hover { background:var(--acc); color:var(--s4); border-color:var(--acc); }
+
+
+
+/* ════════════════════════════════════════════════
+   AR SELECTOR
+════════════════════════════════════════════════ */
+.ar-diamonds { display:flex; flex-wrap:wrap; gap:6px; align-items:flex-end; padding:4px 2px; }
+.ar-item {
+  display:flex; flex-direction:column; align-items:center; gap:5px;
+  padding:8px 10px; border:1px solid var(--border); background:var(--s2);
+  cursor:pointer; transition:background-color .12s, border-color .12s; user-select:none;
+}
+.ar-item:hover { border-color:var(--bh); background:var(--s3); }
+.ar-item.on { border:2px solid var(--acc); background:var(--s2); padding:7px 9px; }
+.ar-item.on .ar-box { border-color:var(--acc); background:var(--s3); }
+.ar-item.on .ar-lbl { color:var(--acc); font-weight:700; }
+.ar-box { border:1px solid var(--td); background:var(--s3); transition:background-color .12s, border-color .12s; flex-shrink:0; }
+.ar-lbl { font-family:var(--fm); font-size:9px; color:var(--tm); letter-spacing:.04em; white-space:nowrap; }
+
+
+
+/* ════════════════════════════════════════════════
+   SLIDERS
+════════════════════════════════════════════════ */
+.sl-block { display:flex; flex-direction:column; gap:7px; }
+.sl-row { display:flex; align-items:center; gap:8px; }
+.sl-lbl { font-size:11px; color:var(--tm); min-width:120px; }
+.sl-val { font-family:var(--fm); font-size:11px; color:var(--acc); min-width:20px; text-align:right; }
+
+
+
+input[type=range] {
+  flex:1; height:3px; -webkit-appearance:none; appearance:none;
+  background:var(--s4); border-radius:2px; outline:none; cursor:pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance:none; width:13px; height:13px; border-radius:50%;
+  background:var(--acc); border:2px solid var(--bg);
+  box-shadow:0 0 0 1px rgba(140,24,24,.3); transition:transform .1s;
+}
+input[type=range]::-webkit-slider-thumb:hover { transform:scale(1.25); }
+input[type=range]::-moz-range-thumb {
+  width:13px; height:13px; border-radius:50%;
+  background:var(--acc); border:2px solid var(--bg); cursor:pointer;
+}
+
+
+/* ════════════════════════════════════════════════
+   RIGHT PANEL
+════════════════════════════════════════════════ */
+.rp { display:flex; flex-direction:column; overflow:hidden; background:var(--bg); }
+
+
+/* ── Right toolbar ── */
+.rtb {
+  display:flex; align-items:center; gap:10px; flex-shrink:0;
+  padding:10px 18px; border-bottom:1px solid var(--border);
+  background:var(--s1);
+}
+
+
+.rtb-title {
+  font-family:var(--fm); font-size:12px; letter-spacing:.1em;
+  color:var(--tm); font-weight:500; text-transform:uppercase;
+}
+
+
+/* ── Buttons ── */
+.btn {
+  font-family:var(--fm); font-size:10px; letter-spacing:.14em; text-transform:uppercase;
+  padding:4px 10px;
+  border:2px solid var(--acc); background:transparent; color:var(--acc);
+  cursor:pointer; transition:background-color .12s, color .12s, opacity .12s;
+}
+.btn:hover { background:rgba(140,24,24,.08); }
+.btn.stamp-active { background:var(--acc); color:#fff; }
+.btn.stamp-active:hover { opacity:.88; }
+.btn-acc { background:var(--acc); color:#fff; border-color:var(--acc); font-weight:700; letter-spacing:.1em; }
+.btn-acc:hover { opacity:.88; }
+.btn-icon { padding:6px 10px; font-size:22px; letter-spacing:0; border:1px solid var(--border); background:none; color:var(--acc); opacity:.85; border-radius:3px; min-height:40px; min-width:40px; display:inline-flex; align-items:center; justify-content:center; }
+.btn-icon:hover { opacity:1; background:var(--acc2); border-color:var(--acc); }
+.btn-icon.stamp-active { background:var(--acc); color:#fff; border-color:var(--acc); opacity:1; }
+.btn-icon.stamp-active:hover { opacity:.88; }
+#btnReset { color:var(--td); border-color:var(--border); opacity:.55; }
+#btnReset:hover { color:var(--acc); border-color:var(--acc); opacity:1; background:var(--acc2); }
+
+
+
+.stats {
+  margin-left:auto; display:flex; gap:14px;
+  font-family:var(--fm); font-size:10px; color:var(--td);
+}
+.stats span b { color:var(--tm); font-weight:400; }
+.sbar-sep { opacity:.35; }
+.sbar b { color:var(--tm); font-weight:400; }
+
+
+/* ── Output body ── */
+.obody { flex:1; overflow-y:auto; padding:18px; background:var(--s1); }
+
+
+.pblock {
+  background:var(--s2); border:1px solid var(--border);
+  border-radius:var(--r); overflow:hidden;
+}
+
+/* ЛИЧНОЕ ДЕЛО pblock — typewriter sheet on desk */
+body.t-delo .pblock {
+  background:#EEE9D9;
+  border:1px solid rgba(50,30,8,.2);
+  box-shadow:2px 3px 10px rgba(0,0,0,.2), inset 0 0 0 1px rgba(255,255,255,.4);
+}
+
+
+.pbhead {
+  background:var(--s3); border-bottom:1px solid var(--border);
+  padding:6px 14px; font-family:var(--fm); font-size:9.5px;
+  color:var(--td); letter-spacing:.1em; text-transform:uppercase;
+  display:flex; align-items:center; gap:10px;
+}
+body.t-delo .pbhead {
+  background:var(--s3); border-bottom:1px dotted var(--bh);
+  font-family:var(--fm); letter-spacing:.12em; color:var(--tm);
+}
+
+
+.pbhead-byp {
+  font-family:var(--fm); font-size:9px;
+  padding:2px 7px; border-radius:var(--r);
+  background:rgba(140,24,24,.15); border:1px solid rgba(140,24,24,.3); color:var(--byp);
+  display:none;
+}
+.pbhead-byp.show { display:block; }
+
+
+.ptext {
+  font-family:var(--fm); font-size:11.5px; line-height:1.85;
+  padding:16px; white-space:pre-wrap; word-break:break-word; color:var(--text);
+}
+
+
+/* ════════════════════════════════════════════════
+   STATUS BAR
+════════════════════════════════════════════════ */
+.sbar {
+  border-top:1px solid var(--border); padding:7px 18px; flex-shrink:0;
+  display:flex; gap:18px; flex-wrap:wrap;
+  font-family:var(--fm); font-size:9.5px; color:var(--td);
+  background:var(--s1);
+}
+
+
+.dot {
+  display:inline-block; width:6px; height:6px; border-radius:50%;
+  background:var(--grn); margin-right:5px; animation:pulse 2s infinite;
+}
+
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.25} }
+
+/* ════════════════════════════════════════════════
+   TOAST
+════════════════════════════════════════════════ */
+#toast {
+  position:fixed; bottom:28px; left:50%;
+  transform:translateX(-50%) translateY(16px);
+  background:var(--acc); color:#fff;
+  font-family:var(--fm); font-size:11px;
+  padding:10px 22px; border-radius:var(--r);
+  opacity:0; transition:opacity .22s, transform .22s; pointer-events:none; z-index:999;
+}
+#toast.show { opacity:1; transform:translateX(-50%) translateY(0); }
+
+
+/* ════════════════════════════════════════════════
+   SCROLLBAR
+════════════════════════════════════════════════ */
+::-webkit-scrollbar { width:4px; }
+::-webkit-scrollbar-track { background:transparent; }
+::-webkit-scrollbar-thumb { background:var(--s4); border-radius:2px; }
+
+/* ════════════════════════════════════════════════
+   ЛИЧНОЕ ДЕЛО — PRESET DROPDOWN (в левой панели)
+════════════════════════════════════════════════ */
+.hdr-delo-selector { display:flex; align-items:center; gap:6px; position:relative; flex:1; min-width:0; }
+.hdr-delo-label {
+  white-space:nowrap;
+  font-family:var(--fm); font-size:10px; letter-spacing:.06em;
+  color:var(--tm); font-weight:700;
+}
+.hdr-delo-field {
+  display:flex; align-items:center; gap:6px;
+  border:1px solid var(--border); border-radius:1px;
+  padding:3px 8px 3px;
+  cursor:pointer; min-width:0; flex:1;
+  font-family:var(--fm); font-size:12px; color:var(--text); letter-spacing:.06em;
+  background:var(--s5);
+  transition:border-color .12s, background .12s, color .12s;
+}
+#deloName { overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.hdr-delo-field:hover { border-color:var(--acc); color:var(--acc); background:var(--acc2); }
+.hdr-delo-arrow { font-size:9px; color:var(--td); margin-left:auto; transition:transform .15s, color .15s; }
+.hdr-delo-field:hover .hdr-delo-arrow { color:var(--acc); }
+.hdr-delo-field.open .hdr-delo-arrow { transform:rotate(-180deg); color:var(--acc); }
+
+.hdr-delo-dropdown {
+  display:none; position:absolute; top:calc(100% + 4px); left:0;
+  z-index:999; min-width:260px;
+  background:var(--s5); border:1px solid var(--bh);
+  box-shadow:3px 4px 12px rgba(0,0,0,.25);
+  font-family:var(--fm);
+}
+.hdr-delo-dropdown.open { display:block; }
+
+.hdr-delo-list { max-height:200px; overflow-y:auto; }
+.hdr-delo-item {
+  display:flex; align-items:center;
+  padding:6px 10px; border-bottom:1px dotted var(--border);
+  cursor:pointer; transition:background .1s;
+}
+.hdr-delo-item:hover { background:var(--s3); }
+.hdr-delo-item.current { background:var(--s2); }
+.hdr-delo-item.current .hdr-delo-item-name { color:var(--acc); }
+.hdr-delo-item-name {
+  flex:1; font-size:9px; letter-spacing:.06em; color:var(--text);
+  overflow:hidden; text-overflow:ellipsis; white-space:nowrap;
+}
+.hdr-delo-item-del {
+  color:var(--acc); font-size:11px; opacity:.35; padding:0 4px; line-height:1; cursor:pointer;
+}
+.hdr-delo-item-del:hover { opacity:1; }
+.hdr-delo-empty {
+  padding:10px; font-size:8px; color:var(--td); letter-spacing:.08em; text-align:center;
+}
+
+.hdr-delo-new {
+  display:flex; border-top:1px solid var(--border);
+}
+.hdr-delo-new input {
+  flex:1; font-family:var(--fm); font-size:9px; letter-spacing:.06em;
+  padding:6px 10px; background:transparent; border:none; outline:none;
+  color:var(--text);
+}
+.hdr-delo-new input::placeholder { color:var(--td); }
+.hdr-delo-new button {
+  font-family:var(--fm); font-size:8px; letter-spacing:.1em; text-transform:uppercase;
+  padding:0 10px; background:var(--acc); color:#fff; cursor:pointer;
+  border:none; white-space:nowrap; flex-shrink:0;
+}
+.hdr-delo-new button:hover { opacity:.85; }
+
+/* ════════════════════════════════════════════════
+   ФОН — цветные чипы
+════════════════════════════════════════════════ */
+.bg-chip {
+  display:flex; flex-direction:column; align-items:center; gap:5px;
+  padding:6px 8px; cursor:pointer; user-select:none;
+}
+.bg-swatch {
+  width:40px; height:26px;
+  border:1px solid rgba(50,30,8,.2);
+}
+.bg-swatch-transparent {
+  background-image: linear-gradient(45deg, #ccc 25%, transparent 25%),
+    linear-gradient(-45deg, #ccc 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, #ccc 75%),
+    linear-gradient(-45deg, transparent 75%, #ccc 75%);
+  background-size: 8px 8px;
+  background-position: 0 0, 0 4px, 4px -4px, -4px 0px;
+  background-color: #fff;
+}
+.bg-chip-lbl {
+  font-family:var(--fm); font-size:9px; color:var(--tm); letter-spacing:.04em; white-space:nowrap;
+}
+body.t-delo .bg-chip { background:var(--s3); border:1px solid var(--border); }
+body.t-delo .bg-chip:hover { background:var(--s4); border-color:var(--bh); }
+body.t-delo .bg-chip:hover .bg-chip-lbl { color:var(--text); }
+body.t-delo .bg-chip.on { background:var(--s4); border:2px solid var(--acc); }
+body.t-delo .bg-chip.on .bg-chip-lbl { color:var(--acc); font-weight:700; }
+body.t-delo .bg-chip.on:hover { background:var(--s4); border-color:var(--acc); }
+
+
+.neg-chips { display:flex; flex-wrap:wrap; gap:5px; padding:10px 14px 4px; }
+.neg-chip {
+  font-family:var(--fm); font-size:9.5px; letter-spacing:.06em;
+  padding:2px 8px; border:1px solid var(--border);
+  background:var(--s3); color:var(--tm); cursor:pointer;
+  user-select:none; transition:background-color .12s, border-color .12s, color .12s;
+}
+.neg-chip:hover { border-color:var(--bh); }
+.neg-chip.on { background:var(--acc); color:#fff; border-color:var(--acc); }
+/* Contextual neg chips — dashed border to distinguish from static */
+.neg-chip-ctx { border-style:dashed; }
+.neg-chip-ctx.on { border-style:solid; }
+/* Contextual group label */
+.neg-chips-ctx-label {
+  font-family:var(--fm); font-size:8px; letter-spacing:.14em;
+  color:var(--td); text-transform:uppercase;
+  padding:6px 14px 0;
+  border-top:1px dotted var(--border);
+  margin-top:4px;
+}
+.neg-chip-group-label {
+  font-family:var(--fm); font-size:7.5px; letter-spacing:.16em;
+  color:var(--td); text-transform:uppercase;
+  padding:8px 14px 2px; opacity:.65;
+}
+.neg-chips-ctx-label .ctx-count {
+  font-variant-numeric: tabular-nums;
+  opacity:.7; margin-left:4px;
+}
+.neg-custom { padding:0 14px 8px; }
+.neg-custom textarea { min-height:36px; font-size:11px; }
+
+/* ════════════════════════════════════════════════
+   PROMPT TERM TOOLTIPS — inline in output text
+════════════════════════════════════════════════ */
+.ptip {
+  border-bottom: 1px dotted var(--td);
+  cursor: help;
+  position: relative;
+}
+.ptip[data-tip]::after {
+  bottom: calc(100% + 7px);
+  width: 240px;
+  font-size: 10px;
+}
+.ptip[data-tip]::before {
+  bottom: calc(100% + 2px);
+}
+
+/* ════════════════════════════════════════════════
+   JARGON TOOLTIPS (hover decode)
+════════════════════════════════════════════════ */
+[data-tip] { position:relative; }
+[data-tip]::after {
+  content:attr(data-tip);
+  position:absolute; bottom:calc(100% + 7px); left:50%; transform:translateX(-50%);
+  background:var(--text); color:var(--s5);
+  font-family:var(--fb); font-size:10.5px; line-height:1.45; font-weight:400;
+  letter-spacing:normal; text-transform:none; text-align:left;
+  padding:7px 10px; border-radius:2px; width:210px;
+  white-space:normal; opacity:0; pointer-events:none;
+  transition:opacity .12s; z-index:80;
+}
+[data-tip]::before {
+  content:''; position:absolute; bottom:calc(100% + 2px); left:50%; transform:translateX(-50%);
+  border:5px solid transparent; border-top-color:var(--text);
+  opacity:0; transition:opacity .12s; z-index:80;
+}
+[data-tip]:hover::after, [data-tip]:hover::before { opacity:.97; }
+
+/* Edge containment — JS adds .tip-edge-l / .tip-edge-r when the tooltip
+   would overflow the viewport at the default centered position */
+[data-tip].tip-edge-l::after { left:0; transform:none; }
+[data-tip].tip-edge-r::after { left:auto; right:0; transform:none; }
+
+/* ════════════════════════════════════════════════
+   ЛИЧНОЕ ДЕЛО — autosave flash + rename/duplicate icons
+════════════════════════════════════════════════ */
+@keyframes deloSavedFlash {
+  0%   { background-color: rgba(26,92,26,.22); }
+  100% { background-color: transparent; }
+}
+.hdr-delo-field.saved-flash { animation: deloSavedFlash .7s ease-out; }
+/* unsaved changes — dotted underline + dim asterisk hint */
+.hdr-delo-field.unsaved { border-bottom-style: dashed; border-color: var(--acc); }
+.hdr-delo-field.unsaved #deloName::after { content: ' *'; color: var(--acc); }
+
+.hdr-delo-item-icon {
+  color:var(--td); font-size:10px; opacity:.45; padding:0 4px; line-height:1; cursor:pointer;
+  transition:opacity .1s, color .1s;
+}
+.hdr-delo-item-icon:hover { opacity:1; color:var(--text); }
+.hdr-delo-item-del:hover { color:var(--acc); }
+.hdr-delo-rename-input {
+  flex:1; font-family:var(--fm); font-size:9px; letter-spacing:.06em;
+  background:var(--s5); border:1px solid var(--bh); outline:none;
+  color:var(--text); padding:2px 4px;
+}
+
+/* ════════════════════════════════════════════════
+   HISTORY STRIP — prompt checkpoints
+════════════════════════════════════════════════ */
+.history-strip {
+  display:flex; align-items:center; gap:4px; overflow-x:auto;
+  padding:5px 18px; border-bottom:1px solid var(--border);
+  background:var(--s1); flex-shrink:0;
+  scrollbar-width:none;
+}
+.history-strip::-webkit-scrollbar { display:none; }
+.history-strip.empty { display:none; }
+.history-strip-label {
+  font-family:var(--fm); font-size:8px; letter-spacing:.12em; color:var(--td);
+  text-transform:uppercase; flex-shrink:0; padding-right:4px; user-select:none;
+}
+.hist-item {
+  font-family:var(--fm); font-size:8px; letter-spacing:.08em;
+  width:28px; height:22px; display:inline-flex; align-items:center; justify-content:center;
+  border:1px solid var(--border); background:var(--s2);
+  color:var(--td); cursor:pointer; white-space:nowrap; flex-shrink:0;
+  transition:background-color .1s, border-color .1s, color .1s;
+  user-select:none;
+}
+.hist-item:hover { border-color:var(--bh); color:var(--text); background:var(--s3); }
+.hist-item.current {
+  background:var(--acc2); border-color:rgba(140,24,24,.5);
+  color:var(--acc); font-weight:600;
+}
+
+
+</style>
+</head>
+<body class="t-delo">
+
+
+
+<!-- ══════════════════════════════════════════
+     HEADER
+══════════════════════════════════════════ -->
+<header class="hdr">
+
+  <!-- ── ЛИЧНОЕ ДЕЛО ── -->
+  <div class="hdr-inner" id="hdrDelo">
+    <div class="hdr-main">
+      <div class="hdr-logo">🧬 DNA Hero</div>
+      <div class="hdr-sep"></div>
+      <div class="hdr-sub">Character Turnaround · СССР 1950–60е</div>
+
+      <div class="hdr-badge">Nano Banana Pro</div>
+      <button id="btnLog" onclick="copyLog()" title="Скопировать лог взаимодействия за эту сессию — для анализа и отладки">◉ лог</button>
+    </div>
+  </div>
+
+
+
+</header>
+
+<!-- ══════════════════════════════════════════
+     LAYOUT
+══════════════════════════════════════════ -->
+<div class="layout">
+
+<!-- ════════════ LEFT CONTROLS ════════════ -->
+<div class="lp">
+
+  <div class="lp-toggle-all">
+    <button id="btnToggleAll" onclick="toggleAllSections()" title="Свернуть / развернуть все секции">⊟</button>
+    <div class="hdr-delo-selector">
+      <span class="hdr-delo-label">Личное дело персонажа №</span>
+      <div class="hdr-delo-field" id="deloField" onclick="toggleDeloDropdown()">
+        <span id="deloName">_________</span>
+        <span class="hdr-delo-arrow">▾</span>
+      </div>
+      <div class="hdr-delo-dropdown" id="deloDropdown">
+        <div class="hdr-delo-list" id="deloList"></div>
+        <div class="hdr-delo-new">
+          <input type="text" id="deloInput" placeholder="+ Новое дело…" onmousedown="event.stopPropagation()" onkeydown="if(event.key==='Enter'){event.preventDefault();savePreset();}">
+          <button onmousedown="event.stopPropagation()" onclick="event.preventDefault();savePreset()">Завести</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="lp-scroll">
+
+  <!-- РАКУРСЫ -->
+  <div class="sh" id="shViews" data-collapsible>Ракурсы<span class="sh-preview" id="prvViews"></span></div>
+  <div class="chips" id="viewsGroup">
+    <div class="chip on"  data-val="front_view_(0°)">Спереди 0°</div>
+    <div class="chip on"  data-val="back_view_(180°)">Сзади 180°</div>
+    <div class="chip"     data-val="left_side_view_(90°)">Лево 90°</div>
+    <div class="chip"     data-val="right_side_view_(270°)">Право 270°</div>
+    <div class="chip"     data-val="three-quarter_view_(45°)">3/4 · 45°</div>
+    <div class="chip"     data-val="three-quarter_back_view_(135°)">3/4 сзади</div>
+    <div class="chip"     data-val="close-up_face_portrait">Лицо крупно</div>
+    <div class="chip"     data-val="overhead_top-down">Сверху ↓</div>
+  </div>
+
+  <!-- ФОРМАТ -->
+  <div class="sh" id="shAr" data-collapsible>Формат<span class="sh-preview" id="prvAr"></span></div>
+  <div class="ar-diamonds" id="arGroup">
+    <div class="ar-item chip" data-val="--ar 4:1" data-tip="Очень широкая полоса — удобно для нескольких ракурсов персонажа в один ряд (классический turnaround-лист).">
+      <div class="ar-box" style="width:56px;height:14px;"></div>
+      <div class="ar-lbl">4:1</div>
+    </div>
+    <div class="ar-item chip" data-val="--ar 3:1" data-tip="Широкая полоса — тот же принцип, но компактнее по горизонтали.">
+      <div class="ar-box" style="width:48px;height:16px;"></div>
+      <div class="ar-lbl">3:1</div>
+    </div>
+    <div class="ar-item chip" data-val="--ar 2:1" data-tip="Умеренно широкий кадр — 2–3 ракурса в ряд или одна фигура с большим пространством по бокам.">
+      <div class="ar-box" style="width:44px;height:22px;"></div>
+      <div class="ar-lbl">2:1</div>
+    </div>
+    <div class="ar-item chip on" data-val="--ar 16:9" data-tip="Кинематографический кадр — один ракурс, есть простор для фона и окружения.">
+      <div class="ar-box" style="width:48px;height:27px;"></div>
+      <div class="ar-lbl">16:9</div>
+    </div>
+    <div class="ar-item chip" data-val="--ar 1:1" data-tip="Квадрат — портрет, аватар, карточка персонажа.">
+      <div class="ar-box" style="width:36px;height:36px;"></div>
+      <div class="ar-lbl">1:1</div>
+    </div>
+    <div class="ar-item chip" data-val="--ar 2:3" data-tip="Вертикальный портрет — классическое фото в полный рост.">
+      <div class="ar-box" style="width:24px;height:36px;"></div>
+      <div class="ar-lbl">2:3</div>
+    </div>
+    <div class="ar-item chip" data-val="--ar 9:16" data-tip="Высокий вертикальный кадр — формат «история» / мобильный экран.">
+      <div class="ar-box" style="width:20px;height:36px;"></div>
+      <div class="ar-lbl">9:16</div>
+    </div>
+  </div>
+
+  <!-- ОСВЕЩЕНИЕ -->
+  <div class="sh" id="shLight" data-collapsible>Освещение<span class="sh-preview" id="prvLight"></span></div>
+  <div class="chips" id="lightGroup">
+    <div class="chip on" data-val="flat even studio lighting — large softboxes both sides, zero cast shadows, all costume surfaces fully readable">💡 Студия · ровное</div>
+    <div class="chip"    data-val="soft three-point studio lighting — key 45° right, fill left, rim backlight, natural depth">💡 Студия · 3-точечное</div>
+    <div class="chip"    data-val="full moon natural moonlight — cold blue-white silver light from directly overhead, hard crisp shadows, night atmosphere, no ambient warmth">🌕 Лунный свет</div>
+    <div class="chip"    data-val="single bare incandescent bulb hanging overhead — Soviet prison cell practical light, harsh straight-down spotlight, deep under-eye and jaw shadows, stark underlit areas">💡 Лампа тюрьмы</div>
+    <div class="chip"    data-val="diffused overcast natural daylight — flat even illumination, no directional shadows, cold grey Soviet atmosphere">☁️ Пасмурный день</div>
+    <div class="chip"    data-val="extreme Siberian overcast winter daylight — flat cold white light, near-zero colour temperature contrast, blue-grey shadow fill, all warmth absent, skin appears pale and raw">☁️ Сибирская зима · плоск.</div>
+    <div class="chip"    data-val="dappled taiga forest light — patches of cold sunlight through conifer canopy, high-contrast alternating pools of light and shadow, green-tinted fill from foliage">🌲 Таёжный свет</div>
+    <div class="chip"    data-val="golden hour — warm 3200K highlights, long lateral cast shadows, rim separation on silhouette">☀️ Золотой час</div>
+    <div class="chip"    data-val="hard single-source high-contrast key light 45° left — deep shadows, photorealistic film production lighting, no stylisation">☀️ Жёсткий боковой</div>
+    <div class="chip"    data-val="MGB interrogation single hanging lamp — practical incandescent above and slightly in front of subject, severe downward-forward key, deep socket shadows, background in near-darkness">🕵 Допрос · лампа</div>
+  </div>
+
+
+  <!-- ПЕРСОНАЖ -->
+  <div class="sh" id="shChar" data-collapsible>Персонаж<span class="sh-preview" id="prvChar"></span></div>
+  <div class="field">
+    <div class="flabel">Описание персонажа</div>
+    <textarea id="charDesc" rows="3"
+      placeholder="Напр: мужчина 35 лет, заросший, худощавый, тёмные волосы, сталинский лагерь, ватник…"></textarea>
+  </div>
+
+  <!-- ПОЛ -->
+  <div class="sh" id="shGender" data-collapsible>Пол<span class="sh-preview" id="prvGender"></span></div>
+  <div class="chips" id="genderGroup">
+    <div class="chip on" data-val="">— не задан —</div>
+    <div class="chip" data-val="male">Мужчина</div>
+    <div class="chip" data-val="female">Женщина</div>
+  </div>
+
+  <!-- ПОЗА -->
+  <div class="sh" id="shPose" data-collapsible>Поза<span class="sh-preview" id="prvPose"></span></div>
+  <div class="chips" id="poseGroup">
+    <div class="chip on" data-val="apose">A-Pose · референс</div>
+    <div class="chip" data-val="tpose">T-Pose · риггинг</div>
+  </div>
+
+  <!-- ЭТНИЧЕСКИЙ ТИП -->
+  <div class="sh" id="shEthnic" data-collapsible>Этничность<span class="sh-preview" id="prvEthnic"></span></div>
+  <div class="chips" id="ethnicGroup">
+    <div class="chip on" data-val="">— не задан —</div>
+    <div class="chip" data-val="russian">Русский / славянский</div>
+    <div class="chip" data-val="ukrainian">Украинский</div>
+    <div class="chip" data-val="caucasian">Кавказский</div>
+    <div class="chip" data-val="central_asian">Среднеазиатский</div>
+    <div class="chip" data-val="jewish">Еврейский · ашкеназский</div>
+    <div class="chip" data-val="siberian">Сибирский / бурятский</div>
+    <div class="chip" data-val="baltic">Прибалтийский</div>
+    <div class="chip" data-val="tatar">Татарский / башкирский</div>
+  </div>
+
+  <!-- ВОЗРАСТНАЯ КАТЕГОРИЯ -->
+  <div class="sh" id="shAge" data-collapsible>Возраст<span class="sh-preview" id="prvAge"></span></div>
+  <div class="chips" id="ageGroup">
+    <div class="chip on" data-val="">Взрослый (25–50)</div>
+    <div class="chip"    data-val="elder60">👴 Пожилой (60–70)</div>
+    <div class="chip"    data-val="elder80">🧓 Старик (75–85)</div>
+    <div class="chip"    data-val="teen">Подросток 14–16</div>
+    <div class="chip"    data-val="child7">🧒 Ребёнок 7–8 лет</div>
+    <div class="chip"    data-val="child3">👶 Дошкольник 3–4 г.</div>
+  </div>
+
+
+  <!-- КАМЕРА -->
+  <div class="sh" id="shCam" data-collapsible>Камера<span class="sh-preview" id="prvCam"></span></div>
+  <div class="chips" id="camGroup">
+    <div class="chip on" data-val="Phase One XF · 120mm · f/5.6 · ISO 200 · full body eye-level — reference quality, zero distortion" data-tip="Без искажений, полный рост — лучший вариант как технический референс костюма и пропорций.">120mm · Референс</div>
+    <div class="chip"    data-val="Canon R5 · 85mm · f/1.8 · ISO 100 · eye-level · shallow depth of field portrait" data-tip="Классический портретный объектив — лёгкое размытие фона, акцент на лице.">85mm · Портрет</div>
+    <div class="chip"    data-val="Sony FX3 · 35mm · f/4 · ISO 800 · eye-level torso · cinematic 16:9 — environmental wide shot only, character full body at distance, no facial close-up, no wide-angle facial distortion" data-tip="Широкий план с окружением — без крупного лица, персонаж на расстоянии.">35mm · Кино</div>
+    <div class="chip"    data-val="Nikon Z9 · 200mm · f/2.8 · ISO 64 · compressed telephoto · zero perspective distortion" data-tip="Телеобъектив — сжимает перспективу, максимум детализации лица и текстур.">200mm · Макс. резкость</div>
+  </div>
+
+
+  <!-- ФОН — СТУДИЯ -->
+  <div class="sh" id="shBg" data-collapsible>Фон<span class="sh-preview" id="prvBg"></span></div>
+  <div class="chips" id="bgGroup" style="gap:8px;padding:4px 2px;">
+    <div class="chip bg-chip on" data-val="clean white seamless studio backdrop" title="Белый">
+      <div class="bg-swatch" style="background:#ffffff;"></div>
+      <div class="bg-chip-lbl">Белый</div>
+    </div>
+    <div class="chip bg-chip" data-val="neutral light gray seamless backdrop" title="Серый">
+      <div class="bg-swatch" style="background:#b0b0b0;"></div>
+      <div class="bg-chip-lbl">Серый</div>
+    </div>
+    <div class="chip bg-chip" data-val="solid pure black infinite void backdrop" title="Чёрный">
+      <div class="bg-swatch" style="background:#111111;"></div>
+      <div class="bg-chip-lbl">Чёрный</div>
+    </div>
+    <div class="chip bg-chip" data-val="fully transparent background — PNG alpha channel, no background pixels" title="Прозрачный PNG">
+      <div class="bg-swatch bg-swatch-transparent"></div>
+      <div class="bg-chip-lbl">PNG</div>
+    </div>
+    <div class="chip bg-chip" data-val="neutral light-to-white photography sweep gradient" title="Студийный градиент">
+      <div class="bg-swatch" style="background:linear-gradient(135deg,#e8e8e8 0%,#ffffff 100%);"></div>
+      <div class="bg-chip-lbl">Градиент</div>
+    </div>
+  </div>
+
+  <!-- ПОГОДА -->
+  <div class="sh" id="shWeather" data-collapsible>Погода<span class="sh-preview" id="prvWeather"></span></div>
+  <div class="sl-block">
+    <div class="sl-row">
+      <div class="sl-lbl">💧 Мокрый</div>
+      <input type="range" min="0" max="10" value="0" id="slWet">
+      <div class="sl-val" id="vWet">0</div>
+    </div>
+    <div class="sl-row">
+      <div class="sl-lbl">❄️ Снег / иней</div>
+      <input type="range" min="0" max="10" value="0" id="slSnow">
+      <div class="sl-val" id="vSnow">0</div>
+    </div>
+    <div class="sl-row">
+      <div class="sl-lbl">💨 Ветер</div>
+      <input type="range" min="0" max="10" value="0" id="slWind">
+      <div class="sl-val" id="vWind">0</div>
+    </div>
+    <div class="sl-row">
+      <div class="sl-lbl">🌫 Пыль / грязь</div>
+      <input type="range" min="0" max="10" value="0" id="slDust">
+      <div class="sl-val" id="vDust">0</div>
+    </div>
+  </div>
+
+  <!-- ИЗНОС -->
+  <div class="sh" id="shWear" data-collapsible>Износ<span class="sh-preview" id="prvWear"></span></div>
+  <div class="sl-block">
+    <div class="sl-row">
+      <div class="sl-lbl">🧥 Поношенность</div>
+      <input type="range" min="0" max="10" value="0" id="slWear">
+      <div class="sl-val" id="vWear">0</div>
+    </div>
+    <div class="sl-row">
+      <div class="sl-lbl">🔴 Повреждения</div>
+      <input type="range" min="0" max="10" value="0" id="slDamage">
+      <div class="sl-val" id="vDamage">0</div>
+    </div>
+  </div>
+
+  <!-- ФИЗИЧЕСКОЕ СОСТОЯНИЕ -->
+  <div class="sh-bypass" id="shSfx" data-collapsible>SFX<span class="sh-preview" id="prvSfx"></span></div>
+  <div class="field">
+    <div class="flabel flabel-byp">Активируют SFX-лексику · мультивыбор</div>
+  </div>
+  <div class="chips" id="injuryGroup">
+    <div class="chip" data-val="cut_forehead">🩸 Порез · лоб</div>
+    <div class="chip" data-val="black_eye">👁 Синяк под глазом</div>
+    <div class="chip" data-val="bloody_nose">👃 Кровь из носа</div>
+    <div class="chip" data-val="split_lip">💋 Разбитая губа</div>
+    <div class="chip" data-val="cheek_bruise">🔴 Гематома · щека</div>
+    <div class="chip" data-val="healed_scar">✂️ Шрам (заживший)</div>
+    <div class="chip" data-val="bandaged_wound">🩹 Перевязанная рана</div>
+    <div class="chip" data-val="burn_hand">🔥 Ожог · рука/предплечье</div>
+    <div class="chip" data-val="scraped_cheek">🤕 Ссадина · скула</div>
+    <div class="chip" data-val="broken_nose">💢 Перелом носа (опухоль)</div>
+    <div class="chip" data-val="frostbite_cheeks">❄ Обморожение · щёки</div>
+    <div class="chip" data-val="chapped_lips_cold">🥶 Потрескавшиеся губы · мороз</div>
+  </div>
+
+  <!-- ЭМОЦИОНАЛЬНОЕ СОСТОЯНИЕ -->
+  <div class="sh" id="shMood" data-collapsible>Настроение<span class="sh-preview" id="prvMood"></span></div>
+  <div class="chips" id="moodGroup">
+    <div class="chip on-teal on" data-val="neutral">😐 Нейтральный</div>
+    <div class="chip" data-val="sad">😢 Грустный</div>
+    <div class="chip" data-val="angry">😠 Гневный</div>
+    <div class="chip" data-val="scared">😨 Испуганный</div>
+    <div class="chip" data-val="desperate">😭 Отчаянный</div>
+    <div class="chip" data-val="determined">😤 Решительный</div>
+    <div class="chip" data-val="broken">😔 Подавленный</div>
+    <div class="chip" data-val="confused">😶 Растерянный</div>
+    <div class="chip" data-val="pleading">🥺 Умоляющий</div>
+    <div class="chip" data-val="shocked">😲 Шок</div>
+    <div class="chip" data-val="cold">🥶 Замёрзший</div>
+    <div class="chip" data-val="exhausted">😮‍💨 Изнурённый</div>
+    <div class="chip" data-val="happy">😊 Радостный</div>
+    <div class="chip" data-val="proud">🫡 Гордый</div>
+    <div class="chip" data-val="tender">🥰 Нежный / тёплый</div>
+    <div class="chip" data-val="hopeful">🌟 Надежда / облегчение</div>
+    <div class="chip" data-val="amused">😏 Лукавый / насмешливый</div>
+    <div class="chip" data-val="stoic">🗿 Стоический / спокойный</div>
+  </div>
+
+
+  <!-- QUALITY / STYLE -->
+  <div class="sh" id="shStyle" data-collapsible>Стиль<span class="sh-preview" id="prvStyle"></span></div>
+  <div class="chips" id="styleGroup">
+    <div class="chip on" data-val="--style raw" data-tip="Минимум художественной обработки от Nano Banana — максимальная точность к референсу.">RAW · без стилизации</div>
+    <div class="chip"    data-val="--style raw --stylize 0" data-tip="То же плюс явный запрет любой стилизации — самый предсказуемый, «сухой» результат.">RAW + stylize 0</div>
+    <div class="chip"    data-val="--stylize 200" data-tip="Небольшая художественная свобода модели — чуть мягче и живее, но менее точно к референсу.">Stylize 200</div>
+    <div class="chip"    data-val="--stylize 750" data-tip="Сильная стилизация — модель может заметно отойти от лица и деталей референса.">Stylize 750 ⚠</div>
+  </div>
+
+  <!-- ДОПОЛНИТЕЛЬНО -->
+  <div class="sh" id="shExtra" data-collapsible>Доп. текст<span class="sh-preview" id="prvExtra"></span></div>
+  <div class="field">
+    <textarea id="extraNotes" rows="2"
+      placeholder="Напр: tattoo on neck / character holds a cigarette / missing front tooth…"></textarea>
+  </div>
+
+  </div><!-- /lp-scroll -->
+
+</div><!-- /lp -->
+
+<!-- ════════════ RIGHT OUTPUT ════════════ -->
+<div class="rp">
+
+  <div class="rtb">
+    <button class="btn-icon" id="btnCopyAll" onclick="copyAll()" title="Скопировать всё (промпт + негатив)">⎘⁺</button>
+    <button class="btn-icon" onclick="copyPrompt()" title="Скопировать промпт">⎘</button>
+    <button class="btn-icon" id="btnMode" onclick="toggleMode()" title="Полный / краткий промпт"><span id="btnModeIcon" style="font-size:8px;line-height:1;display:block;">▪</span></button>
+    <button class="btn-icon" id="btnWrap" onclick="toggleWrap()" title="Перенос строк">⏎</button>
+    <button class="btn-icon" id="btnSnapshot" onclick="pinAsPreset()" title="Сохранить текущее состояние как новое Личное дело (появится в списке слева)">📌</button>
+    <span style="display:inline-block;width:1px;height:20px;background:var(--border);margin:0 6px;flex-shrink:0;"></span>
+    <button class="btn-icon" id="btnReset" onclick="resetState()" title="Сбросить все настройки">↺</button>
+  </div>
+
+  <div class="history-strip empty" id="historyStrip">
+    <span class="history-strip-label">/ История</span>
+  </div>
+
+  <div class="obody">
+    <div class="pblock">
+      <div class="pbhead">
+        <span>ПРОМПТ</span>
+
+      </div>
+      <div class="ptext" id="promptOut"></div>
+    </div>
+
+    <div class="pblock" style="margin-top:12px;">
+      <div class="pbhead" style="justify-content:space-between;">
+        <span>НЕГАТИВ</span>
+        <span style="display:flex; gap:4px;">
+          <button class="btn-icon" id="btnNegSelectAll" onclick="toggleAllNegative()" title="Выбрать все варианты негативного промпта">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="4" width="6" height="6" rx="1"/>
+              <path d="M5 7l1 1 2-2"/>
+              <rect x="3" y="14" width="6" height="6" rx="1"/>
+              <path d="M5 17l1 1 2-2"/>
+              <line x1="12" y1="7" x2="21" y2="7"/>
+              <line x1="12" y1="17" x2="21" y2="17"/>
+            </svg>
+          </button>
+          <button class="btn-icon" onclick="copyNegative()" title="Скопировать негативный промпт">⎘</button>
+        </span>
+      </div>
+      <div class="neg-chip-group-label">Артефакты / качество</div>
+      <div class="neg-chips" id="negChipsQ"></div>
+      <div class="neg-chip-group-label" style="margin-top:2px;">Анатомия / содержание</div>
+      <div class="neg-chips" id="negChips"></div>
+      <div class="neg-chips-ctx-label" id="negChipsCtxLabel" style="display:none;">— Контекст выбора<span class="ctx-count" id="ctxCount"></span></div>
+      <div class="neg-chips" id="negChipsCtx" style="display:none;padding-top:6px;"></div>
+      <div class="neg-custom">
+        <textarea id="negCustom" rows="2" placeholder="Доп. запреты через запятую…"></textarea>
+      </div>
+      <div class="ptext neg-out" id="negOut" style="font-size:10.5px;line-height:1.6;color:var(--acc);padding:10px 16px;"></div>
+    </div>
+  </div>
+
+  <div class="sbar">
+    <span><span class="dot"></span>В ЭФИРЕ</span>
+    <span id="sViews">Ракурсы: —</span>
+    <span id="sCond">Условия: ✦ ЧИСТО</span>
+    <span id="sBg">Фон: —</span>
+    <span id="sMode"></span>
+    <span class="sbar-sep">·</span>
+    <span>Слов: <b id="wc">0</b></span>
+    <span>Знаков: <b id="cc">0</b></span>
+    <span>~Токены: <b id="tc">0</b></span>
+  </div>
+
+</div><!-- /rp -->
+</div><!-- /layout -->
+
+<div id="toast">✓ Скопировано в буфер</div>
+
+<script>
+
+
+/* ═══════════════════════════════════════
+   DEFAULT STATE (single source of truth)
+═══════════════════════════════════════ */
+const S_DEFAULT = {
+  views: ['front_view_(0°)', 'back_view_(180°)'],
+  bg:    'clean white seamless studio backdrop',
+  light: 'flat even studio lighting — large softboxes both sides, zero cast shadows, all costume surfaces fully readable',
+  cam:   'Phase One XF · 120mm · f/5.6 · ISO 200 · full body eye-level — reference quality, zero distortion',
+  ar:    '--ar 16:9', style: '--style raw', ageType: '', mood: 'neutral',
+  gender: '', pose: 'apose', ethnic: '',
+  wet:0, snow:0, wind:0, dust:0, wear:0, damage:0, charDesc:'', extra:''
+};
+
+/* ═══════════════════════════════════════
+   STATE
+═══════════════════════════════════════ */
+const S = {
+  views:    new Set(S_DEFAULT.views),
+  bg:       S_DEFAULT.bg,
+  light:    S_DEFAULT.light,
+  cam:      S_DEFAULT.cam,
+  ar:       S_DEFAULT.ar,
+  style:    S_DEFAULT.style,
+  ageType:  S_DEFAULT.ageType,
+  mood:     S_DEFAULT.mood,
+  injuries: new Set(),
+  gender:   S_DEFAULT.gender,
+  pose:     S_DEFAULT.pose,
+  ethnic:   S_DEFAULT.ethnic,
+  wet:S_DEFAULT.wet, snow:S_DEFAULT.snow, wind:S_DEFAULT.wind,
+  dust:S_DEFAULT.dust, wear:S_DEFAULT.wear, damage:S_DEFAULT.damage,
+  charDesc:S_DEFAULT.charDesc, extra:S_DEFAULT.extra
+};
+
+/* ═══════════════════════════════════════
+   CONDITION DESCRIPTORS
+═══════════════════════════════════════ */
+const WET_DESC   = ['barely perceptible surface moisture on exposed skin and hair tips','very slight dampness: skin surface catching light, hair slightly clumped','light rain exposure: skin glistening with water beads, hair edges darkened, fabric shoulders beginning to darken','moderate rainfall: skin wet and reflecting ambient light, hair fully dampened and clumping, fabric darkened at all upper surfaces with visible water saturation seeping downward','heavy rain: all fabric visibly saturated and clinging to body contours, thin water rivulets streaming down face, neck, arms; hair flat and plastered','very heavy rain drenching: soaked fabric clinging tightly everywhere, continuous water streaming, face partially obscured by running water, every surface wet','extreme saturation: fabric fully transparent with wetness, sheets of water cascading from shoulders and elbows, hair completely flattened, skin tone altered by water sheen','near-submersion level: clothing as if just emerged from water, all air expelled from fabric, water pouring from every point, eyes squinting against rain','maximum saturation: character appears just removed from submersion, all fabric vacuum-tight to skin, water pouring from cuffs and hem, full specular sheen on all surfaces','absolute drenched: indistinguishable from swimming fully clothed — every layer transparent, water cascading in streams from all surfaces'];
+const SNOW_DESC  = ['trace crystalline frost on hair and uppermost shoulder surfaces, barely perceptible individual flakes','light frost dusting: white crystalline accumulation on hair crown and shoulder tops, individual flake detail visible','light snowfall: visible snow layer on head and shoulders, snow settled in fabric creases and equipment crevices, faint breath vapor','moderate snow accumulation: thick white layer across all upward-facing surfaces — head, shoulders, equipment tops — frost crystals accumulating in eyebrows and facial hair','heavy snowfall: dense accumulation on head and shoulders, icicle formation beginning at fabric edges and hair ends, skin raw and reddened, full breath vapor cloud','very heavy snow: character partially obscured by falling snow, thick accumulation everywhere, icicles 2–4 cm at edges, frost crystals coating entire visible surface','blizzard condition: snow encrusting face and body, frost forming on eyelashes and stubble, heavy accumulation bending fabric and equipment under weight','heavy blizzard: character half-buried from waist in drifted snow, upper body thickly encrusted with ice and frost, only face partially clear','extreme whiteout: character mostly obscured by blowing snow, visible only as silhouette through snow curtain, heavy ice formations on all protrusions','complete ice encrustation: character sealed in thick ice shell from the elements, movement-frozen posture, frozen mid-motion'];
+const WIND_DESC  = ['very faint breeze: hair barely stirring at tips','light breeze: hair and any loose fabric edges very slightly displaced','moderate wind: hair swept consistently to one side, any loose fabric flutter visible','strong wind: hair blown fully horizontal, fabric panels billowing away from body on windward side, squinting expression','very strong wind: body visibly braced, all loose elements blown hard, fabric pressed tight on windward side and billowing behind','gale force: character leaning significantly into wind, loose elements at maximum extension, debris and particles visible in air','near-storm: extreme body bracing, fabric violently whipping, hair in chaotic stream','storm force: character struggling to maintain footing, full body at angle against wind, all fabric in violent motion','extreme storm: character nearly bent double against wind, fabric at risk of tearing, horizontal rain or snow','maximum storm force: survival posture, both hands needed, barely standing'];
+const DUST_DESC  = ['faint dust on boot soles and lower trouser hems','light dust coating on boots and lower legs, faint earthy tone on all surfaces','moderate road dust: boots and knees coated, dust on hands and forearms, light grimy film on face','heavy dust and dried mud: boots caked, knees dirty, streaks of dried dust on face from sweat','battlefield dust and grime: lower half heavily caked in mud, dust ground into fabric weave, sweat-streak tracks on face, dirty hands','very heavy soiling: thick dried mud on 50% of costume, face visibly dirty, grime in all skin creases','extreme battlefield dirt: thick caked earth on most surfaces, original fabric color barely discernible, face coated except eye area','severe mud coverage: character coated head to near-knee in dried earth and mud, only partial face clear','near-total coverage: 90% of surface area coated in layered grime and caked mud, hair matted with earth','completely encrusted: no original costume color visible, character appears to be made of earth'];
+const WEAR_DESC  = ['barely worn: a few faint creases at natural fold lines, fabric otherwise crisp and clean, hardware bright','light break-in: subtle softening at flex points, faint crease memory at knees and elbows','lightly worn: gentle fading at stress points, fabric texture slightly softened, minor boot scuff','moderately worn: visible fading gradient at knees and elbows, pilling on high-friction zones, boots dull and scuffed','well worn: significant fading, frayed hem edges, stitching pulling at stress seams, boot sole showing wear pattern','heavily worn: pronounced fading and discoloration, holes developing at extreme flex points, repairs beginning on key seams','very heavily worn: patched repairs visible, color faded to near-neutral, sole separating at toe, inner lining visible through worn areas','near-end-of-life wear: fabric structurally compromised in multiple areas, improvised patches, color entirely bleached','extreme wear: more patch than original fabric, structural failures throughout, held together with improvised repairs','total destruction: clothing barely functional as garments, more rags than designed items'];
+const DAMAGE_DESC= ['minor surface abrasion on outer layer, barely visible','small clean tear on secondary layer, frayed edges, no structural compromise','moderate damage: one notable tear with frayed edges, minor scorch or abrasion mark on outer layer','clear battle damage: 2–3 distinct tears, one strap or fastener broken and improvised with cord or tape','significant damage: multiple tears and punctures, hard elements showing impact deformation, improvised repair with wire or tape','heavy damage: large tears exposing inner layers, equipment partially destroyed, burn marks and impact craters visible','severe damage: structural failures in load-bearing elements, large sections missing or shredded, fire and blade damage both present','near-catastrophic damage: costume barely holding together, major sections lost, extensive combat evidence throughout','catastrophic damage: only key identifying elements remain intact, everything else destroyed or missing','total destruction: costume fragments only, character effectively in ruins of original garment'];
+
+function wetDesc(v)    { return v ? WET_DESC   [Math.min(v,10)-1] : null; }
+function snowDesc(v)   { return v ? SNOW_DESC  [Math.min(v,10)-1] : null; }
+function windDesc(v)   { return v ? WIND_DESC  [Math.min(v,10)-1] : null; }
+function dustDesc(v)   { return v ? DUST_DESC  [Math.min(v,10)-1] : null; }
+function wearDesc(v)   { return v ? WEAR_DESC  [Math.min(v,10)-1] : null; }
+function damageDesc(v) { return v ? DAMAGE_DESC[Math.min(v,10)-1] : null; }
+
+/* ═══════════════════════════════════════
+   AGE FRAME MAP
+═══════════════════════════════════════ */
+const AGE_FRAME = {
+  '':       null,
+  elder60:  'PRODUCTION NOTE — CHARACTER TYPE: Elderly figure, approximately 60–70 years of age. Age-accurate anatomy: visible skin aging — wrinkles around eyes (crow\'s feet), forehead lines, nasolabial folds deepened, slight jowl softening. Hair grey or salt-and-pepper, possibly thinning at temples. Slightly reduced build — less muscle mass than prime years, slight postural curvature. Period-accurate Soviet 1950s clothing for a person of this age (heavier wool coat, practical footwear). Maintain all established facial features and character identity with age-appropriate anatomy. Apply age anatomy while preserving the specific facial identity from the reference photo — do not replace the face with a generic elderly face.',
+  elder80:  'PRODUCTION NOTE — CHARACTER TYPE: Very elderly figure, approximately 75–85 years of age. Advanced age anatomy: deeply lined face with prominent wrinkle structure, pronounced jowls, sunken cheeks, age-spotted skin, white or very sparse hair. Significantly reduced build — stooped posture, thinner limbs, reduced height from vertebral compression. Hands show pronounced tendon structure, age spots, thin papery skin. Period-accurate Soviet 1950s elderly clothing. Maintain full character identity and facial recognition while rendering age-accurate anatomy. Apply advanced age anatomy while preserving all recognisable facial features from the reference photo — do not replace the face with a generic elderly face.',
+  teen:     'PRODUCTION NOTE — CHARACTER TYPE: Adolescent figure, approximately 14–16 years of age, fully clothed in period-accurate Soviet 1950s attire. Adolescent body proportions — not yet fully adult build, slightly shorter stature, less defined musculature.',
+  child7:   'PRODUCTION NOTE — MINOR CHARACTER REFERENCE (film/animation production): Fully clothed child figure, approximately 7–8 years of age. Anatomical proportions: head-to-body ratio approximately 1:5, approximately 120–130 cm height, school-age facial features with rounded cheeks and large eyes. Period-accurate Soviet 1950s working-class clothing (e.g. padded jacket, wool trousers, felt boots). Wardrobe and continuity reference for Soviet drama film production.',
+  child3:   'PRODUCTION NOTE — MINOR CHARACTER REFERENCE (film/animation production): Fully clothed toddler/preschool figure, approximately 3–4 years of age. Anatomical proportions: head-to-body ratio approximately 1:4, approximately 95–100 cm height, rounded toddler build, soft facial features. Period-accurate Soviet 1950s children\'s clothing (simple coat, wool hat, small boots). Wardrobe and continuity reference for Soviet drama film production.'
+};
+
+/* ═══════════════════════════════════════
+   INJURY MAP
+═══════════════════════════════════════ */
+const INJURY_MAP = {
+  cut_forehead:     'SFX CONTINUITY NOTE — theatrical prosthetic makeup: laceration 2–3 cm on forehead, partially dried blood tracking in a thin rivulet down to brow or cheek, professional film-grade wound prosthetic. Production reference for makeup department.',
+  black_eye:        'SFX CONTINUITY NOTE — theatrical makeup prosthetic: periorbital haematoma — purple-to-green contusion bruising surrounding the orbital area, slight eyelid swelling, subtle subconjunctival redness at inner corner. Non-graphic film-grade reference.',
+  bloody_nose:      'SFX CONTINUITY NOTE — theatrical makeup: nasal epistaxis — fresh or drying blood visible on upper lip, nostril edges, and possibly a thin dried rivulet on chin. Period-accurate fight or interrogation scene SFX reference.',
+  split_lip:        'SFX CONTINUITY NOTE — theatrical makeup: lower lip split with localised bruising and swelling at site, dried blood at the cut line. Realistic non-graphic film prosthetic reference.',
+  cheek_bruise:     'SFX CONTINUITY NOTE — theatrical makeup prosthetic: blunt-force contusion on cheekbone — dark purple-yellow-green bruise approximately 4–5 cm diameter, realistic film-grade prosthetic, no open wound.',
+  healed_scar:      'CHARACTER TRAIT — permanent feature: healed hypertrophic scar tissue, raised slightly above surrounding skin, pale pink or white-silver colour, no active blood, no swelling — an old permanent scar, part of the character\'s established appearance.',
+  bandaged_wound:   'SFX/WARDROBE NOTE: improvised field-dressed wound — rough fabric bandage wrap applied over a wound site, blood seepage visible through wrapping material, period-accurate 1950s USSR dressing material (torn shirt or gauze). Wardrobe and SFX continuity reference.',
+  burn_hand:        'SFX CONTINUITY NOTE — theatrical makeup: partial-thickness thermal burn on back of hand and/or forearm — reddened inflamed skin with blistering at wound edges, non-graphic film-grade prosthetic reference for SFX department.',
+  scraped_cheek:    'SFX CONTINUITY NOTE — theatrical makeup: impact abrasion on cheekbone — superficial dermis removed, raw pink-red texture, slight irregular border, non-graphic SFX reference.',
+  broken_nose:      'SFX CONTINUITY NOTE — theatrical makeup prosthetic: post-nasal-fracture appearance — slight bridge deviation from midline, perinasal swelling and bruising, no active bleeding, non-graphic film-grade reference.',
+  frostbite_cheeks: 'PERIOD/ENVIRONMENT CONDITION — frostbite injury consistent with extreme Siberian cold: cheeks and nose tip show early-to-moderate frostbite — mottled red-white-purple skin discolouration, waxy texture in affected areas, slight swelling. Period-accurate USSR winter survival reference. Apply frostbite effects on top of the character\'s existing facial geometry from the reference photo — do not alter bone structure, cheek shape, or facial proportions.',
+  chapped_lips_cold:'ENVIRONMENT CONDITION — extreme cold exposure: severely chapped and cracked lips from prolonged cold-weather exposure, dry flaking skin at lip borders, possible fine crack lines with minimal dried blood, pale blue-tinged lip colour. Cold-weather character reference. Apply cold exposure effects on top of the character\'s existing lip shape from the reference photo — do not alter lip geometry or facial proportions.'
+};
+
+/* ═══════════════════════════════════════
+   VIEW HUMAN NAMES
+═══════════════════════════════════════ */
+/* Русские короткие названия ракурсов — для статус-бара */
+const VIEW_RU = {
+  'front_view_(0°)':                    'Спереди 0°',
+  'back_view_(180°)':                   'Сзади 180°',
+  'left_side_view_(90°)':               'Лево 90°',
+  'right_side_view_(270°)':             'Право 270°',
+  'three-quarter_view_(45°)':           '3/4 · 45°',
+  'three-quarter_back_view_(135°)':     '3/4 сзади',
+  'close-up_face_portrait':             'Лицо крупно',
+  'overhead_top-down':                  'Сверху ↓'
+};
+
+/* ═══════════════════════════════════════
+   MOOD MAP
+═══════════════════════════════════════ */
+const MOOD_MAP = {
+  neutral:    { label:'Neutral / Reference', prompt:'Neutral reference expression — relaxed, eyes forward, no emotional charge. A-pose stance. Mouth closed or barely parted.' },
+  sad:        { label:'😢 Sad', prompt:'Expression: deep sadness — downcast eyes, slight inward brow furrow, subtle downward curve at mouth corners, relaxed jaw, subdued posture with barely perceptible shoulder droop. Not theatrical — quiet, internal grief.' },
+  angry:      { label:'😠 Angry', prompt:'Expression: intense anger — hard brow furrow, compressed set lips, visible jaw muscle tension, rigid upright posture, hands possibly in loose fists at sides. Eyes hard and focused forward.' },
+  scared:     { label:'😨 Scared', prompt:'Expression: fear — slightly widened eyes, raised brows (inner corners higher), barely open mouth, tense neck, instinctive slight backward weight shift. Eyes searching for threat.' },
+  desperate:  { label:'😭 Desperate', prompt:'Expression: despair / anguish — deeply furrowed brow, eyes squeezed shut or red-rimmed and glistening, slight open mouth as if mid-exhale of grief, hunched forward posture with rounded shoulders.' },
+  determined: { label:'😤 Determined', prompt:'Expression: grim determination — level hard gaze, set jaw, slightly compressed lips, squared shoulders, slight forward lean. Controlled intensity, no panic, no anger — pure resolve.' },
+  broken:     { label:'😔 Broken / Dejected', prompt:'Expression: resignation and dejection — eyes downcast and unfocused, slight forward shoulder hunch, head angle slightly down, total muscular exhaustion visible. The expression of someone who has stopped fighting.' },
+  confused:   { label:'😶 Confused / Disoriented', prompt:'Expression: confusion / disorientation — unfocused gaze, slightly open mouth, subtle head tilt, visible tension between brows as if attempting to process information. Eyes moving slightly off-axis.' },
+  pleading:   { label:'🥺 Pleading', prompt:'Expression: pleading / beseeching — inner brows raised creating a vulnerable arch, wide soft eyes with high moisture, slightly open mouth in mid-word. Tentative, exposed posture. The expression of someone asking for mercy.' },
+  shocked:    { label:'😲 Shocked', prompt:'Expression: shock / stunned — wide-open eyes, maximal brow elevation, dropped jaw, frozen posture as if movement has been interrupted mid-action. Complexion slightly drained.' },
+  cold:       { label:'🥶 Cold / Freezing', prompt:'Expression: suffering from extreme cold — squinting against wind, tense jaw, lips pressed together and slightly blue-tinged, nose and cheeks raw red, hunched shoulders pulling inward for warmth, visible breath vapor from nostrils.' },
+  exhausted:  { label:'😮‍💨 Exhausted', prompt:'Expression: total physical exhaustion — heavy eyelids, slack jaw slightly open, unfocused eyes, every muscle in a state of depletion. Head slightly forward, posture reflecting complete drainage of energy. Sweat and fatigue visible on skin.' },
+  happy:      { label:'😊 Happy / Joyful', prompt:'Expression: genuine happiness — natural smile with slight crinkling at outer eye corners (Duchenne smile), relaxed brow, open warm gaze, upright relaxed posture with subtle openness in chest. Not theatrical, not exaggerated — quiet and real.' },
+  proud:      { label:'🫡 Proud / Dignified', prompt:'Expression: quiet pride and dignity — level gaze with slight upward chin, compressed confident smile or neutral but firm mouth, squared shoulders, upright military-adjacent posture. The pride of someone who has earned something or completed a duty.' },
+  tender:     { label:'🥰 Tender / Warm', prompt:'Expression: warmth and tenderness — soft open eyes with genuine warmth, gentle closed-mouth smile, relaxed facial muscles, slight forward lean of openness. The expression of someone looking at something or someone they love. Body language open and unguarded.' },
+  hopeful:    { label:'🌟 Hopeful / Relieved', prompt:'Expression: hope or relief — eyes slightly widened with brightness, brows gently raised in open expectancy, soft slight smile as if exhaling after long tension. Posture slightly loosened from previous tension.' },
+  amused:     { label:'😏 Amused / Wry', prompt:'Expression: wry amusement — one-sided subtle smile, slight squint of knowing in the eyes, relaxed jaw. Not a laugh — a private, internal recognition of absurdity.' },
+  stoic:      { label:'🗿 Stoic / Composed', prompt:'Expression: total composure and stoicism — completely neutral musculature, unflinching level gaze, jaw relaxed but closed, absolutely still. The expression of someone who has learned to show nothing on their face regardless of interior state.' }
+};
+
+/* ═══════════════════════════════════════
+   GENDER MAP
+═══════════════════════════════════════ */
+const GENDER_MAP = {
+  '':       null,
+  male:     'CHARACTER GENDER: Male. The character in the reference photo presents as male — maintain male anatomy exactly as seen in the photo. Do not reinterpret, feminise, or alter body structure. Do not alter any individual facial features from the photo.',
+  female:   'CHARACTER GENDER: Female. The character in the reference photo presents as female — maintain female anatomy exactly as seen in the photo. Do not reinterpret, masculinise, or alter body structure. Do not alter any individual facial features from the photo.'
+};
+
+/* ═══════════════════════════════════════
+   POSE MAP
+═══════════════════════════════════════ */
+const POSE_MAP = {
+  apose: '— Stance: A-pose. Feet shoulder-width apart, arms relaxed at sides with slight outward angle, hands open and natural. Full symmetry. Clean reference pose for costume and anatomy documentation.',
+  tpose: '— Stance: T-pose. Arms extended fully horizontal at shoulder height, palms facing down. Feet together. Standard rigging reference pose — no tilt, no bend, perfect bilateral symmetry.'
+};
+
+/* ═══════════════════════════════════════
+   ETHNIC MAP
+═══════════════════════════════════════ */
+const ETHNIC_MAP = {
+  '':            null,
+  russian:       'ETHNIC CONTEXT (soft reference only — do not override photo): Character exists within a Russian / East Slavic ethnic context. Preserve all individual features from the reference photo exactly — this note provides cultural context only, not appearance instructions.',
+  ukrainian:     'ETHNIC CONTEXT (soft reference only — do not override photo): Character exists within a Ukrainian / East Slavic ethnic context. Preserve all individual features from the reference photo exactly — this note provides cultural context only, not appearance instructions.',
+  caucasian:     'ETHNIC CONTEXT (soft reference only — do not override photo): Character exists within a Caucasian (Georgian / Armenian / Azerbaijani) ethnic context. Preserve all individual features from the reference photo exactly — this note provides cultural context only, not appearance instructions.',
+  central_asian: 'ETHNIC CONTEXT (soft reference only — do not override photo): Character exists within a Central Asian (Kazakh / Uzbek / Kyrgyz / Tajik / Turkmen) ethnic context. Preserve all individual features from the reference photo exactly — this note provides cultural context only, not appearance instructions.',
+  jewish:        'ETHNIC CONTEXT (soft reference only — do not override photo): Character exists within an Ashkenazi Jewish ethnic and cultural context, USSR 1950s. Preserve all individual features from the reference photo exactly — this note provides cultural context only, not appearance instructions.',
+  siberian:      'ETHNIC CONTEXT (soft reference only — do not override photo): Character exists within a Siberian indigenous / Buryat ethnic context. Preserve all individual features from the reference photo exactly — this note provides cultural context only, not appearance instructions.',
+  baltic:        'ETHNIC CONTEXT (soft reference only — do not override photo): Character exists within a Baltic (Estonian / Latvian / Lithuanian) ethnic context. Preserve all individual features from the reference photo exactly — this note provides cultural context only, not appearance instructions.',
+  tatar:         'ETHNIC CONTEXT (soft reference only — do not override photo): Character exists within a Tatar / Bashkir ethnic context. Preserve all individual features from the reference photo exactly — this note provides cultural context only, not appearance instructions.'
+};
+
+/* ═══════════════════════════════════════
+   NEGATIVE PROMPT CHIPS
+═══════════════════════════════════════ */
+// Group A — visual artifacts / technical quality
+const NEG_CHIPS_Q = [
+  { id:'illustration',  label:'Иллюстрация',      val:'illustration, drawing, painting, artwork, sketch, concept art' },
+  { id:'anime',         label:'Аниме / мультфильм',val:'anime, manga, cartoon, animated, cel-shaded' },
+  { id:'stylized',      label:'Стилизация',        val:'stylized, stylisation, artistic filter, color grading, posterization' },
+  { id:'aitexture',     label:'AI-кожа / CGI',     val:'CGI skin, plastic complexion, over-smoothed texture, porcelain skin, digital perfection, synthetic hair texture, neural network sheen, overly smooth face, airbrushed complexion' },
+  { id:'grain',         label:'Зерно / ретро',     val:'film grain, noise, vintage filter, retro photo treatment, faded, desaturated, aged photo effect' },
+  { id:'wideangle',     label:'Широкий угол',      val:'wide-angle distortion, fisheye, lens distortion, barrel distortion' },
+  { id:'blur',          label:'Размытие',          val:'blur, soft focus, out of focus, depth of field blur applied to subject' },
+  { id:'watermark',     label:'Вотермарк / текст', val:'watermark, text overlay, signature, logo, border, frame, printed text in image, annotations, labels, subtitles, captions' },
+  { id:'lowquality',    label:'Низкое качество',   val:'low quality, low resolution, pixelated, jpeg artifacts, blurry, grainy, noisy' },
+];
+// Group B — anatomy / content
+const NEG_CHIPS = [
+  { id:'deformed',      label:'Деформации',        val:'deformed, malformed, extra limbs, missing limbs, disfigured, mutated anatomy' },
+  { id:'hands',         label:'Руки / пальцы',     val:'deformed hands, extra fingers, fused fingers, missing fingers, wrong finger count, six fingers, melted hand, malformed wrist, hand anatomy error' },
+  { id:'floating',      label:'Обрезка фигуры',    val:'floating figure, cut off legs, missing feet, cropped body, figure not fully in frame' },
+  { id:'multiple',      label:'Двойники / клоны',  val:'multiple people, duplicate character, cloned figure, copy-paste figure, two versions of same person' },
+  { id:'anachronism',   label:'Анахронизм',        val:'modern clothing, smartphone visible, digital watch, contemporary hairstyle, neon synthetic fabric, 21st century aesthetics, post-Soviet fashion, modern sneakers, modern accessories' },
+  { id:'nudity',        label:'Нагота',            val:'nudity, bare skin, undressed, revealing clothing' },
+];
+const negActive = new Set();
+
+/* ═══════════════════════════════════════
+   CONTEXTUAL NEGATIVE CHIP RULES
+   Each rule: { id, when:()=>bool, chips:[{id,label,val}] }
+   Chips appear/disappear based on current S state.
+═══════════════════════════════════════ */
+const CONTEXT_NEG_RULES = [
+  // VIEWS — multiple views selected
+  {
+    id: 'ctx_views_multi',
+    when: () => S.views.size > 1,
+    chips: [
+      { id:'ctx_view_consistency', label:'Несоответствие ракурсов', val:'inconsistent character design between views, different facial features per angle, mismatched outfit details across views, different proportions between angles, different hairstyle between views, non-matching skin tone between panels' },
+      { id:'ctx_view_duplicates',  label:'Дубли / лишние фигуры',  val:'duplicate figures in frame, repeated character, multiple instances of subject in single panel' },
+    ]
+  },
+  // VIEWS — overhead
+  {
+    id: 'ctx_view_overhead',
+    when: () => S.views.has('overhead_top-down'),
+    chips: [
+      { id:'ctx_view_overhead_persp', label:'Перспектива · сверху', val:'eye-level perspective, side view perspective, upward angle, horizon visible, foreshortening errors on overhead shot' },
+    ]
+  },
+  // VIEWS — close-up face
+  {
+    id: 'ctx_view_closeup',
+    when: () => S.views.has('close-up_face_portrait'),
+    chips: [
+      { id:'ctx_view_face_body',  label:'Тело в портрете',   val:'full body visible in portrait, lower body visible, feet in close-up portrait, torso disproportionate in face shot' },
+      { id:'ctx_view_face_blend', label:'Идеализация лица',  val:'airbrushed skin, beauty retouching, smoothed pores, idealised face, makeup added, model-like symmetry, AI face averaging' },
+    ]
+  },
+
+  // ASPECT RATIO — very wide (turnaround strip)
+  {
+    id: 'ctx_ar_wide',
+    when: () => S.ar === '--ar 4:1' || S.ar === '--ar 3:1' || S.ar === '--ar 2:1',
+    chips: [
+      { id:'ctx_ar_singlefig', label:'Одна фигура · широкий кадр', val:'single centred figure on wide format, character repeated in identical pose without view rotation, poses not differentiated across panels, blank wasted space left and right' },
+    ]
+  },
+  // ASPECT RATIO — portrait/vertical
+  {
+    id: 'ctx_ar_portrait',
+    when: () => S.ar === '--ar 2:3' || S.ar === '--ar 9:16',
+    chips: [
+      { id:'ctx_ar_crop', label:'Обрезка фигуры · вертикаль', val:'head cropped at top, feet cropped at bottom, figure not fully visible in vertical format, composition cuts limbs' },
+    ]
+  },
+
+  // LIGHTING — moonlight
+  {
+    id: 'ctx_light_moon',
+    when: () => S.light.includes('moonlight'),
+    chips: [
+      { id:'ctx_light_moon_warm', label:'Тёплый свет · луна', val:'warm yellow light, orange cast, sunlight, golden hour tones, warm ambient fill in moonlit scene, daytime colour temperature' },
+    ]
+  },
+  // LIGHTING — prison/interrogation lamp
+  {
+    id: 'ctx_light_prison',
+    when: () => S.light.includes('prison cell') || S.light.includes('interrogation'),
+    chips: [
+      { id:'ctx_light_harsh_soft', label:'Мягкий свет · жёсткая сцена', val:'softbox lighting, diffused light, even illumination, studio fill, flattering beauty lighting in interrogation or prison scene' },
+      { id:'ctx_light_bg_bright',  label:'Светлый фон · тёмная сцена', val:'bright background, visible room detail in shadow zone, lit background in prison interrogation lighting' },
+    ]
+  },
+  // LIGHTING — Siberian winter
+  {
+    id: 'ctx_light_sibwinter',
+    when: () => S.light.includes('Siberian overcast winter'),
+    chips: [
+      { id:'ctx_light_sib_warm', label:'Тепло · сибирская зима', val:'warm tones, golden light, summer colours, green foliage, warm skin tones in Siberian winter light, any warmth in colour palette' },
+    ]
+  },
+  // LIGHTING — golden hour
+  {
+    id: 'ctx_light_golden',
+    when: () => S.light.includes('golden hour'),
+    chips: [
+      { id:'ctx_light_golden_cold', label:'Холодный свет · золотой час', val:'cold blue lighting, overcast flatness, studio light, shadow fill removing warm shadow, blue-hour tones in golden hour scene' },
+    ]
+  },
+  // LIGHTING — taiga forest
+  {
+    id: 'ctx_light_taiga',
+    when: () => S.light.includes('taiga forest'),
+    chips: [
+      { id:'ctx_light_taiga_open', label:'Открытое небо · тайга', val:'open sky background, urban setting, studio light, direct sunlight without canopy, clear unobstructed sky in taiga forest scene' },
+    ]
+  },
+
+  // LIGHTING — hard single key 45°
+  {
+    id: 'ctx_light_hardkey',
+    when: () => S.light.includes('single-source high-contrast key light'),
+    chips: [
+      { id:'ctx_light_hardkey_flat', label:'Плоский свет · жёсткий ключ', val:'even diffused illumination, no hard shadow, shadowless face, filled shadows eliminating depth, beauty light flatness in hard key scene' },
+    ]
+  },
+  // LIGHTING — overcast day
+  {
+    id: 'ctx_light_overcast',
+    when: () => S.light.includes('diffused overcast natural daylight'),
+    chips: [
+      { id:'ctx_light_overcast_sun', label:'Солнце · пасмурный день', val:'direct sunlight patches on subject, hard cast shadows, warm golden tones, sunbeams, directional sunlight in flat overcast scene' },
+    ]
+  },
+  // LIGHTING — 3-point studio
+  {
+    id: 'ctx_light_threepoint',
+    when: () => S.light.includes('three-point studio lighting'),
+    chips: [
+      { id:'ctx_light_3pt_flat', label:'Плоский свет · 3-точечное', val:'flat front-lit face with no depth, missing rim separation, no fill-to-key ratio, no backlight rim on hair or shoulders, monotone flat illumination' },
+    ]
+  },
+
+  // CAMERA — 85mm portrait (shallow DOF)
+  {
+    id: 'ctx_cam_85',
+    when: () => S.cam.includes('85mm'),
+    chips: [
+      { id:'ctx_cam_85_sharp', label:'Резкий фон · 85mm', val:'fully sharp background, zero depth of field, all background elements in focus, no bokeh in portrait lens shot' },
+    ]
+  },
+  // CAMERA — 35mm cinematic
+  {
+    id: 'ctx_cam_35',
+    when: () => S.cam.includes('35mm'),
+    chips: [
+      { id:'ctx_cam_35_closeup', label:'Крупный план · 35mm', val:'extreme close-up face, cropped facial portrait, face filling frame, tight face shot on 35mm environmental lens' },
+    ]
+  },
+  // CAMERA — 200mm telephoto
+  {
+    id: 'ctx_cam_200',
+    when: () => S.cam.includes('200mm'),
+    chips: [
+      { id:'ctx_cam_200_wide', label:'Широкая перспектива · 200mm', val:'wide angle distortion, exaggerated perspective, receding background, environment depth in telephoto compressed shot' },
+    ]
+  },
+
+  // BACKGROUND — transparent PNG
+  {
+    id: 'ctx_bg_transparent',
+    when: () => S.bg.includes('transparent'),
+    chips: [
+      { id:'ctx_bg_trans_fill', label:'Залитый фон · PNG', val:'visible background colour, white background fill, grey background fill, non-transparent background, coloured background behind subject, semi-transparent fringing on edges' },
+    ]
+  },
+  // BACKGROUND — black
+  {
+    id: 'ctx_bg_black',
+    when: () => S.bg.includes('pure black'),
+    chips: [
+      { id:'ctx_bg_black_merge', label:'Слияние с фоном · чёрный', val:'dark clothing merging with black background, lost silhouette edge on black backdrop, hair disappearing into black background' },
+    ]
+  },
+  // BACKGROUND — non-transparent studio (white/gray/gradient)
+  {
+    id: 'ctx_bg_studio',
+    when: () => !S.bg.includes('transparent') && !S.bg.includes('pure black'),
+    chips: [
+      { id:'ctx_bg_studio_props', label:'Реквизит / окружение', val:'furniture, objects on backdrop, environmental props, location elements, outdoor setting visible, floor texture beyond seamless paper' },
+    ]
+  },
+
+  // GENDER — male
+  {
+    id: 'ctx_gender_male',
+    when: () => S.gender === 'male',
+    chips: [
+      { id:'ctx_gender_m_fem', label:'Феминные черты · мужчина', val:'feminine facial features, female face, delicate bone structure on male character, androgynous face intended as male' },
+    ]
+  },
+  // GENDER — female
+  {
+    id: 'ctx_gender_female',
+    when: () => S.gender === 'female',
+    chips: [
+      { id:'ctx_gender_f_masc', label:'Маскулинные черты · женщина', val:'masculine jaw, heavy brow ridge, broad male shoulders on female character, masculine bone structure on female face' },
+    ]
+  },
+
+  // POSE — T-pose
+  {
+    id: 'ctx_pose_tpose',
+    when: () => S.pose === 'tpose',
+    chips: [
+      { id:'ctx_pose_t_relax', label:'Расслабленные руки · T-Pose', val:'arms drooping, relaxed arm angle, bent elbows in T-pose, diagonal arm position instead of strict 90° horizontal T-pose' },
+    ]
+  },
+
+  // AGE — elder
+  {
+    id: 'ctx_age_elder',
+    when: () => S.ageType === 'elder60' || S.ageType === 'elder80',
+    chips: [
+      { id:'ctx_age_elder_young', label:'Омоложение · пожилой', val:'youthful skin, smooth unlined face, no wrinkles on elderly character, middle-aged appearance, digitally de-aged look, airbrushed elderly skin' },
+    ]
+  },
+  // AGE — teen
+  {
+    id: 'ctx_age_teen',
+    when: () => S.ageType === 'teen',
+    chips: [
+      { id:'ctx_age_teen_adult', label:'Взрослые черты · подросток', val:'adult proportions, fully developed adult physique, adult facial structure, mature body build on teenage character' },
+    ]
+  },
+
+  // WEATHER — wet
+  {
+    id: 'ctx_weather_wet',
+    when: () => S.wet > 0,
+    chips: [
+      { id:'ctx_wet_dry', label:'Сухая одежда · мокрый', val:'dry clean clothing, no moisture, dry hair, no wet fabric texture, dry skin in wet environment scene' },
+    ]
+  },
+  // WEATHER — snow
+  {
+    id: 'ctx_weather_snow',
+    when: () => S.snow > 0,
+    chips: [
+      { id:'ctx_snow_warm', label:'Тёплая среда · снег', val:'green vegetation visible, warm colours, summer environment, dry ground, flowers or leaves in snow scene' },
+    ]
+  },
+  // WEATHER — wind
+  {
+    id: 'ctx_weather_wind',
+    when: () => S.wind > 0,
+    chips: [
+      { id:'ctx_wind_still', label:'Неподвижность · ветер', val:'completely still hair, motionless fabric, frozen clothing in wind scene, no wind effect on hair or garments, rigid static pose in wind' },
+    ]
+  },
+  // WEATHER — dust
+  {
+    id: 'ctx_weather_dust',
+    when: () => S.dust > 0,
+    chips: [
+      { id:'ctx_dust_clear', label:'Чистый воздух · пыль', val:'sharp clear atmosphere, pristine clean air, studio-clean sharpness in dust or dirt scene, no atmospheric haze or dust particles' },
+    ]
+  },
+
+  // WEAR — worn clothing
+  {
+    id: 'ctx_wear_worn',
+    when: () => S.wear > 0,
+    chips: [
+      { id:'ctx_wear_new', label:'Новая одежда · поношенность', val:'brand new pristine clothing, no wear or ageing on fabric, factory-fresh garment appearance' },
+    ]
+  },
+  // WEAR — damage
+  {
+    id: 'ctx_wear_damage',
+    when: () => S.damage > 0,
+    chips: [
+      { id:'ctx_damage_intact', label:'Целая одежда · повреждения', val:'undamaged pristine clothing, no tears, no burns, no holes, perfectly intact garment in damaged clothing scene' },
+    ]
+  },
+
+  // SFX / INJURIES — any active
+  {
+    id: 'ctx_sfx_active',
+    when: () => S.injuries.size > 0,
+    chips: [
+      { id:'ctx_sfx_clean', label:'Чистое лицо · SFX', val:'clean uninjured face, no visible wounds, perfect skin, no blood, no bruising, no physical trauma visible on character with SFX injuries' },
+      { id:'ctx_sfx_fake', label:'SFX выглядит искусственно', val:'obviously fake CGI wounds, Halloween makeup appearance, unrealistic blood colour, plastic-looking injuries, cartoon injury style' },
+    ]
+  },
+
+  // SFX — per-injury specific contextual negatives
+  { id:'ctx_sfx_forehead',   when: () => S.injuries.has('cut_forehead'),
+    chips:[{ id:'ctx_inj_forehead_clean', label:'Чистый лоб · порез', val:'clean uninjured forehead, no wound on brow area, unblemished forehead skin in forehead laceration scene' }] },
+  { id:'ctx_sfx_blackeye',   when: () => S.injuries.has('black_eye'),
+    chips:[{ id:'ctx_inj_blackeye_clear', label:'Нормальный глаз · синяк', val:'clear unblemished eye area, no bruising around eye, no periorbital discolouration, normal eyelid appearance in black eye scene' }] },
+  { id:'ctx_sfx_bloodynose', when: () => S.injuries.has('bloody_nose'),
+    chips:[{ id:'ctx_inj_nose_clean', label:'Чистый нос · кровь', val:'clean nose with no blood, no nasal blood traces, pristine upper lip in bloody nose scene' }] },
+  { id:'ctx_sfx_splitlip',   when: () => S.injuries.has('split_lip'),
+    chips:[{ id:'ctx_inj_lip_clean', label:'Целая губа · разрыв', val:'undamaged lips, no lip wound, smooth lip contour without split in split lip scene' }] },
+  { id:'ctx_sfx_cheekbruise',when: () => S.injuries.has('cheek_bruise'),
+    chips:[{ id:'ctx_inj_cheek_clean', label:'Чистая щека · гематома', val:'unmarked cheek, no bruising on cheekbone, clean complexion on cheek in cheek bruise scene' }] },
+  { id:'ctx_sfx_scar',       when: () => S.injuries.has('healed_scar'),
+    chips:[{ id:'ctx_inj_scar_missing', label:'Нет шрама', val:'no visible scar tissue, smooth uninterrupted skin where scar should be, healed scar absent from character face' }] },
+  { id:'ctx_sfx_bandage',    when: () => S.injuries.has('bandaged_wound'),
+    chips:[{ id:'ctx_inj_bandage_absent', label:'Нет перевязки', val:'no bandage visible on character, no wound dressing, bare unwrapped skin in bandaged wound scene' }] },
+  { id:'ctx_sfx_burnhand',   when: () => S.injuries.has('burn_hand'),
+    chips:[{ id:'ctx_inj_burn_clean', label:'Чистая рука · ожог', val:'clean undamaged hand skin, no burn marks, no blistering on hands in burn SFX scene' }] },
+  { id:'ctx_sfx_scrapcheek', when: () => S.injuries.has('scraped_cheek'),
+    chips:[{ id:'ctx_inj_scrape_clean', label:'Чистая скула · ссадина', val:'smooth intact cheek skin, no abrasion, no raw skin texture on cheekbone in scrape scene' }] },
+  { id:'ctx_sfx_brokennose', when: () => S.injuries.has('broken_nose'),
+    chips:[{ id:'ctx_inj_nose_straight', label:'Ровный нос · перелом', val:'perfectly straight nose bridge, no nasal swelling, no bridge deviation in broken nose prosthetic scene' }] },
+  { id:'ctx_sfx_frostbite',  when: () => S.injuries.has('frostbite_cheeks'),
+    chips:[{ id:'ctx_inj_frost_rosy', label:'Здоровый румянец · обморожение', val:'healthy rosy cheeks, normal warm skin tone, no mottling in frostbite scene, uniform skin colour on cheeks' }] },
+  { id:'ctx_sfx_chappedlips',when: () => S.injuries.has('chapped_lips_cold'),
+    chips:[{ id:'ctx_inj_lips_smooth', label:'Гладкие губы · мороз', val:'smooth hydrated lips, no cracking, no flaking lip skin, full warm lip colour in chapped lips cold scene' }] },
+
+  // COMBO — wet environment + dark dramatic lighting
+  {
+    id: 'ctx_combo_wet_dark',
+    when: () => S.wet > 2 && (S.light.includes('prison cell') || S.light.includes('interrogation') || S.light.includes('moonlight')),
+    chips: [
+      { id:'ctx_combo_wet_dark_glare', label:'Блики на мокром · тьма', val:'overexposed specular glare on wet surfaces obscuring detail, blown highlights on wet clothing in dark scene, wet surface reflections washing out subject' },
+    ]
+  },
+
+  // MOOD — strong emotional states
+  {
+    id: 'ctx_mood_negative',
+    when: () => ['sad','angry','scared','desperate','broken','pleading','exhausted'].includes(S.mood),
+    chips: [
+      { id:'ctx_mood_neutral_face', label:'Нейтральное лицо · эмоция', val:'neutral expression, blank face, no emotion visible, default relaxed expression in emotional scene' },
+    ]
+  },
+  {
+    id: 'ctx_mood_positive',
+    when: () => ['happy','tender','hopeful','amused'].includes(S.mood),
+    chips: [
+      { id:'ctx_mood_sad_face', label:'Негативная мимика · позитив', val:'sad expression, grimace, frown, neutral stoic face replacing positive mood expression' },
+    ]
+  },
+
+  // STYLE — raw (no stylization)
+  {
+    id: 'ctx_style_raw',
+    when: () => S.style.includes('raw'),
+    chips: [
+      { id:'ctx_style_art', label:'Художественность · RAW', val:'artistic interpretation, painterly rendering, cinematic colour grading applied, stylistic colour filter, AI aesthetic beautification in raw mode' },
+    ]
+  },
+  // STYLE — high stylize
+  {
+    id: 'ctx_style_stylized',
+    when: () => S.style.includes('750'),
+    chips: [
+      { id:'ctx_style_ref_drift', label:'Отход от референса', val:'face drifting from reference photo, invented facial features replacing reference, AI-averaged face, reference photo ignored' },
+    ]
+  },
+];
+
+// Track current ctx chip IDs for cleanup
+let _ctxChipIds = new Set();
+
+function updateContextNegChips() {
+  const ctxContainer = document.getElementById('negChipsCtx');
+  const ctxLabel     = document.getElementById('negChipsCtxLabel');
+  if(!ctxContainer || !ctxLabel) return;
+
+  // Compute which chips should be active now
+  const newChips = [];
+  CONTEXT_NEG_RULES.forEach(rule => {
+    if(rule.when()) newChips.push(...rule.chips);
+  });
+  const newIds = new Set(newChips.map(c => c.id));
+
+  // Remove chips that are no longer applicable
+  _ctxChipIds.forEach(id => {
+    if(!newIds.has(id)) {
+      const el = ctxContainer.querySelector(`[data-id="${id}"]`);
+      if(el) el.remove();
+      negActive.delete(id);
+    }
+  });
+
+  // Add chips that are new
+  newChips.forEach(chip => {
+    if(_ctxChipIds.has(chip.id)) return; // already exists
+    const el = document.createElement('div');
+    el.className = 'neg-chip neg-chip-ctx';
+    el.dataset.id = chip.id;
+    el.textContent = chip.label;
+    if(negActive.has(chip.id)) el.classList.add('on');
+    el.addEventListener('click', () => {
+      if(negActive.has(chip.id)) { negActive.delete(chip.id); el.classList.remove('on'); }
+      else { negActive.add(chip.id); el.classList.add('on'); }
+      updateNegSelectAllBtn();
+      _pendingSection = 'НЕГ';
+      syncNeg();
+    });
+    ctxContainer.appendChild(el);
+  });
+
+  _ctxChipIds = newIds;
+
+  // Show/hide ctx group + update count badge
+  const visible = newChips.length > 0;
+  ctxLabel.style.display     = visible ? '' : 'none';
+  ctxContainer.style.display = visible ? '' : 'none';
+  const countEl = document.getElementById('ctxCount');
+  if(countEl) countEl.textContent = visible ? ` · ${newChips.length}` : '';
+  updateNegSelectAllBtn();
+}
+
+// Helper: get all currently-visible contextual chip defs
+function _getCtxChips() {
+  const chips = [];
+  CONTEXT_NEG_RULES.forEach(rule => { if(rule.when()) chips.push(...rule.chips); });
+  return chips;
+}
+const EL = {
+  out:      document.getElementById('promptOut'),
+  negOut:   document.getElementById('negOut'),
+  toast:    document.getElementById('toast'),
+  wc:       document.getElementById('wc'),
+  cc:       document.getElementById('cc'),
+  tc:       document.getElementById('tc'),
+
+  sViews:   document.getElementById('sViews'),
+  sCond:    document.getElementById('sCond'),
+  sBg:      document.getElementById('sBg'),
+  sMode:    document.getElementById('sMode'),
+  btnMode:  document.getElementById('btnMode'),
+  btnWrap:  document.getElementById('btnWrap'),
+  deloName: document.getElementById('deloName'),
+  charDesc: document.getElementById('charDesc'),
+  extraNotes: document.getElementById('extraNotes'),
+  negCustom:  document.getElementById('negCustom'),
+
+  deloList:   document.getElementById('deloList'),
+};
+
+let promptMode = 'detailed';
+let wrapOn = true;
+
+// Slider config: [inputId, displayId, stateKey] — single source of truth used in init, resetState, loadPreset
+const SLIDER_CONFIG = [
+  ['slWet',    'vWet',    'wet',    'ПОГ'],
+  ['slSnow',   'vSnow',   'snow',   'ПОГ'],
+  ['slWind',   'vWind',   'wind',   'ПОГ'],
+  ['slDust',   'vDust',   'dust',   'ПОГ'],
+  ['slWear',   'vWear',   'wear',   'ИЗН'],
+  ['slDamage', 'vDamage', 'damage', 'ИЗН'],
+];
+
+/* ═══════════════════════════════════════
+   COLLAPSIBLE SECTIONS
+═══════════════════════════════════════ */
+(function initCollapsible() {
+  const lp = document.querySelector('.lp-scroll');
+  document.querySelectorAll('.sh[data-collapsible], .sh-bypass[data-collapsible]').forEach(sh => {
+    const siblings = [];
+    let next = sh.nextElementSibling;
+    while(next && !next.classList.contains('sh') && !next.classList.contains('sh-bypass')) {
+      siblings.push(next);
+      next = next.nextElementSibling;
+    }
+    if(!siblings.length) return;
+
+    const body = document.createElement('div');
+    body.className = 'sh-body sh-hidden';
+    lp.insertBefore(body, siblings[0]);
+    siblings.forEach(el => body.appendChild(el));
+
+    // Find the sh-preview span (already in HTML), extract it temporarily
+    const preview = sh.querySelector('.sh-preview');
+
+    // Wrap existing text nodes + preview-placeholder into a title row
+    const titleRow = document.createElement('span');
+    titleRow.className = 'sh-title-row';
+    // Move all child nodes except sh-preview into titleRow
+    [...sh.childNodes].forEach(node => {
+      if(node !== preview) titleRow.appendChild(node);
+    });
+
+    const arr = document.createElement('span');
+    arr.className = 'sh-arr';
+    arr.textContent = '▾';
+    titleRow.appendChild(arr);
+
+    const mod = document.createElement('span');
+    mod.className = 'sh-mod';
+    titleRow.appendChild(mod);
+
+    sh.appendChild(titleRow);
+    if(preview) sh.appendChild(preview); // preview stays as second child of sh
+
+    sh.classList.add('collapsible');
+
+    // Открыты по умолчанию: Ракурсы, Формат, Освещение
+    const OPEN_BY_DEFAULT = ['shViews', 'shAr', 'shLight'];
+    if(OPEN_BY_DEFAULT.includes(sh.id)) {
+      body.classList.remove('sh-hidden');
+    } else {
+      sh.classList.add('collapsed');
+    }
+
+    sh.addEventListener('click', () => {
+      const hidden = body.classList.contains('sh-hidden');
+      body.classList.toggle('sh-hidden', !hidden);
+      sh.classList.toggle('collapsed', !hidden);
+      updateToggleAllBtn();
+    });
+  });
+  updateToggleAllBtn();
+})();
+
+/* ═══════════════════════════════════════
+   TOGGLE ALL SECTIONS
+═══════════════════════════════════════ */
+function updateToggleAllBtn() {
+  const btn = document.getElementById('btnToggleAll');
+  if(!btn) return;
+  const anyOpen = [...document.querySelectorAll('.sh.collapsible, .sh-bypass.collapsible')]
+    .some(sh => !sh.classList.contains('collapsed'));
+  btn.classList.toggle('sections-open', anyOpen);
+  btn.textContent = anyOpen ? '⊟' : '⊞';
+}
+
+function toggleAllSections() {
+  const allSh = document.querySelectorAll('.sh.collapsible, .sh-bypass.collapsible');
+  const anyOpen = [...allSh].some(sh => !sh.classList.contains('collapsed'));
+  allSh.forEach(sh => {
+    const body = sh.nextElementSibling;
+    if(!body || !body.classList.contains('sh-body')) return;
+    if(anyOpen) {
+      body.classList.add('sh-hidden');
+      sh.classList.add('collapsed');
+    } else {
+      body.classList.remove('sh-hidden');
+      sh.classList.remove('collapsed');
+    }
+  });
+  updateToggleAllBtn();
+}
+
+/* ═══════════════════════════════════════
+   CHIP INIT — VIEWS (multi-select)
+═══════════════════════════════════════ */
+const viewChips = [...document.getElementById('viewsGroup').querySelectorAll('.chip')];
+viewChips.forEach(c => {
+  c.addEventListener('click', () => {
+    const v = c.dataset.val;
+    if(S.views.has(v) && S.views.size > 1){ S.views.delete(v); c.classList.remove('on'); }
+    else if(!S.views.has(v)){ S.views.add(v); c.classList.add('on'); }
+    _pendingSection = 'РАК';
+    render();
+  });
+});
+
+/* ═══════════════════════════════════════
+   CHIP INIT — INJURIES (multi-select)
+═══════════════════════════════════════ */
+const injuryChips = [...document.getElementById('injuryGroup').querySelectorAll('.chip')];
+injuryChips.forEach(c => {
+  c.addEventListener('click', () => {
+    const v = c.dataset.val;
+    if(S.injuries.has(v)){ S.injuries.delete(v); c.classList.remove('on-byp'); }
+    else { S.injuries.add(v); c.classList.add('on-byp'); }
+    _pendingSection = 'БЫП';
+    render();
+  });
+});
+
+/* ═══════════════════════════════════════
+   CHIP INIT — SINGLE-SELECT
+═══════════════════════════════════════ */
+function initSingleSelect(groupId, stateKey, activeClass = 'on', sectionId = null) {
+  const chips = [...document.getElementById(groupId).querySelectorAll('.chip')];
+  chips.forEach(c => c.addEventListener('click', () => {
+    const removeClasses = activeClass === 'on' ? ['on'] : [activeClass, 'on'];
+    chips.forEach(x => x.classList.remove(...removeClasses));
+    c.classList.add(activeClass);
+    if(activeClass !== 'on') c.classList.add('on');
+    S[stateKey] = c.dataset.val;
+    if(sectionId) _pendingSection = sectionId;
+    render();
+  }));
+  return chips;
+}
+
+const moodChips   = initSingleSelect('moodGroup',   'mood',    'on-teal', 'НАС');
+const ageChips    = initSingleSelect('ageGroup',    'ageType', 'on',      'ПЕР');
+const genderChips = initSingleSelect('genderGroup', 'gender',  'on',      'ПЕР');
+const poseChips   = initSingleSelect('poseGroup',   'pose',    'on',      'ПЕР');
+const ethnicChips = initSingleSelect('ethnicGroup', 'ethnic',  'on',      'ПЕР');
+
+/* ═══════════════════════════════════════
+   CHIP INIT — SINGLE-SELECT GROUPS (bg, light, cam, ar, style)
+═══════════════════════════════════════ */
+// Cache chip arrays for all single-value groups — avoids repeated querySelectorAll on reset/load
+const GROUP_CHIPS_CACHE = {};
+['bgGroup','lightGroup','camGroup','arGroup','styleGroup'].forEach(gid => {
+  GROUP_CHIPS_CACHE[gid] = [...document.getElementById(gid).querySelectorAll('.chip')];
+});
+
+const GROUP_KEY_MAP = { bgGroup:'bg', lightGroup:'light', camGroup:'cam', arGroup:'ar', styleGroup:'style' };
+const GROUP_SEC_MAP = { bgGroup:'ФОН', lightGroup:'СВТ', camGroup:'КАМ', arGroup:'АР', styleGroup:'РНД' };
+['bgGroup','lightGroup','camGroup','arGroup','styleGroup'].forEach(gid => {
+  const key   = GROUP_KEY_MAP[gid];
+  const sec   = GROUP_SEC_MAP[gid];
+  const chips = GROUP_CHIPS_CACHE[gid];
+  chips.forEach(c => {
+    c.addEventListener('click', () => {
+      chips.forEach(x => x.classList.remove('on'));
+      c.classList.add('on');
+      S[key] = c.dataset.val;
+      _pendingSection = sec;
+      render();
+    });
+  });
+});
+
+/* ═══════════════════════════════════════
+   SLIDERS
+═══════════════════════════════════════ */
+let sliderRafId = null;
+SLIDER_CONFIG.forEach(([sid, vid, key, sec]) => {
+  const el  = document.getElementById(sid);
+  const lbl = document.getElementById(vid);
+  el.addEventListener('input', () => {
+    S[key] = +el.value;
+    lbl.textContent = el.value;
+    if(sec) _pendingSection = sec;
+    if(sliderRafId) cancelAnimationFrame(sliderRafId);
+    sliderRafId = requestAnimationFrame(() => { render(); sliderRafId = null; });
+  });
+});
+
+/* ═══════════════════════════════════════
+   NEGATIVE CHIPS INIT
+═══════════════════════════════════════ */
+const negContainerQ = document.getElementById('negChipsQ');
+NEG_CHIPS_Q.forEach(chip => {
+  const el = document.createElement('div');
+  el.className = 'neg-chip';
+  el.dataset.id = chip.id;
+  el.textContent = chip.label;
+  el.addEventListener('click', () => {
+    if(negActive.has(chip.id)) { negActive.delete(chip.id); el.classList.remove('on'); }
+    else { negActive.add(chip.id); el.classList.add('on'); }
+    updateNegSelectAllBtn();
+    _pendingSection = 'НЕГ';
+    syncNeg();
+  });
+  negContainerQ.appendChild(el);
+});
+
+const negContainer = document.getElementById('negChips');
+NEG_CHIPS.forEach(chip => {
+  const el = document.createElement('div');
+  el.className = 'neg-chip';
+  el.dataset.id = chip.id;
+  el.textContent = chip.label;
+  el.addEventListener('click', () => {
+    if(negActive.has(chip.id)) { negActive.delete(chip.id); el.classList.remove('on'); }
+    else { negActive.add(chip.id); el.classList.add('on'); }
+    updateNegSelectAllBtn();
+    _pendingSection = 'НЕГ';
+    syncNeg();
+  });
+  negContainer.appendChild(el);
+});
+
+EL.negCustom.addEventListener('input', () => { _pendingSection = 'НЕГ'; syncNeg(); });
+
+/* ═══════════════════════════════════════
+   NEGATIVE PROMPT RENDERER
+   (also called from render(), so no separate call is needed
+   right before render() — avoids redundant double work)
+═══════════════════════════════════════ */
+function renderNeg() {
+  // Static chips (both groups)
+  const parts = [
+    ...NEG_CHIPS_Q.filter(c => negActive.has(c.id)).map(c => c.val),
+    ...NEG_CHIPS.filter(c => negActive.has(c.id)).map(c => c.val),
+  ];
+  // Contextual chips (visible + toggled on)
+  _getCtxChips().filter(c => negActive.has(c.id)).forEach(c => parts.push(c.val));
+  // Child safety: inject protective terms automatically when minor characters are selected
+  if(S.ageType === 'child7' || S.ageType === 'child3' || S.ageType === 'teen') {
+    parts.push('nudity, bare skin, undressed, revealing clothing, suggestive content, inappropriate content');
+  }
+  const custom = EL.negCustom.value.trim();
+  if(custom) parts.push(custom);
+
+  // Dedupe individual terms (case-insensitive) while preserving first-seen order —
+  // prevents repeated phrases like "nudity, bare skin, ..." when both a chip
+  // and the auto-injected child-safety terms contribute overlapping wording.
+  const seen = new Set();
+  const terms = [];
+  parts.join(', ').split(',').forEach(t => {
+    const trimmed = t.trim();
+    if(!trimmed) return;
+    const key = trimmed.toLowerCase();
+    if(!seen.has(key)) { seen.add(key); terms.push(trimmed); }
+  });
+
+  if(!terms.length) {
+    EL.negOut.textContent = '(негативный промпт пуст)';
+    return;
+  }
+  // Instructional preamble — tells the AI model this section is for exclusion
+  const negText =
+    'NEGATIVE PROMPT — strictly exclude ALL of the following from the generated image.\n' +
+    '--no ' + terms.join(', ');
+  // Annotate jargon (e.g. --no) with hover tooltips, same as the main prompt.
+  // textContent-based readers (copy buttons, copyAll) still get the plain text.
+  EL.negOut.innerHTML = annotatePrompt(negText);
+}
+
+/* Negative-prompt edits (chips / custom textarea / select-all) only call
+   renderNeg() directly — they don't go through the main render(). Without this,
+   such edits wouldn't flip the «несохранено» (unsaved) indicator on the current
+   Личное дело, nor get captured by the history auto-snapshot. */
+function syncNeg() {
+  renderNeg();
+  checkUnsaved();
+  scheduleAutoSnapshot();
+}
+
+const NEG_ICON_SELECT = '<rect x="3" y="4" width="6" height="6" rx="1"/><path d="M5 7l1 1 2-2"/><rect x="3" y="14" width="6" height="6" rx="1"/><path d="M5 17l1 1 2-2"/><line x1="12" y1="7" x2="21" y2="7"/><line x1="12" y1="17" x2="21" y2="17"/>';
+const NEG_ICON_CLEAR  = '<rect x="3" y="4" width="6" height="6" rx="1"/><path d="M4.5 5.5l3 3M7.5 5.5l-3 3"/><rect x="3" y="14" width="6" height="6" rx="1"/><path d="M4.5 15.5l3 3M7.5 15.5l-3 3"/><line x1="12" y1="7" x2="21" y2="7"/><line x1="12" y1="17" x2="21" y2="17"/>';
+
+function updateNegSelectAllBtn() {
+  const btn = document.getElementById('btnNegSelectAll');
+  if(!btn) return;
+  const ctxChips = _getCtxChips();
+  const allStaticQ = NEG_CHIPS_Q.every(chip => negActive.has(chip.id));
+  const allStatic  = NEG_CHIPS.every(chip => negActive.has(chip.id));
+  const allCtx     = ctxChips.every(chip => negActive.has(chip.id));
+  const allOn = allStaticQ && allStatic && (ctxChips.length === 0 || allCtx);
+  btn.querySelector('svg').innerHTML = allOn ? NEG_ICON_CLEAR : NEG_ICON_SELECT;
+  btn.title = allOn ? 'Снять все варианты негативного промпта' : 'Выбрать все варианты негативного промпта';
+}
+
+function toggleAllNegative() {
+  const ctxChips = _getCtxChips();
+  const allStaticQ = NEG_CHIPS_Q.every(chip => negActive.has(chip.id));
+  const allStatic  = NEG_CHIPS.every(chip => negActive.has(chip.id));
+  const allCtx     = ctxChips.every(chip => negActive.has(chip.id));
+  const allOn = allStaticQ && allStatic && (ctxChips.length === 0 || allCtx);
+  if(allOn) {
+    negActive.clear();
+    negContainerQ.querySelectorAll('.neg-chip').forEach(el => el.classList.remove('on'));
+    negContainer.querySelectorAll('.neg-chip').forEach(el => el.classList.remove('on'));
+    document.querySelectorAll('#negChipsCtx .neg-chip').forEach(el => el.classList.remove('on'));
+    showToast('✓ Все варианты негативного промпта сняты');
+  } else {
+    NEG_CHIPS_Q.forEach(chip => negActive.add(chip.id));
+    NEG_CHIPS.forEach(chip => negActive.add(chip.id));
+    negContainerQ.querySelectorAll('.neg-chip').forEach(el => el.classList.add('on'));
+    negContainer.querySelectorAll('.neg-chip').forEach(el => el.classList.add('on'));
+    ctxChips.forEach(chip => {
+      negActive.add(chip.id);
+      const el = document.querySelector(`#negChipsCtx [data-id="${chip.id}"]`);
+      if(el) el.classList.add('on');
+    });
+    showToast('✓ Выбраны все варианты негативного промпта');
+  }
+  updateNegSelectAllBtn();
+  _pendingSection = 'НЕГ';
+  syncNeg();
+}
+
+function copyNegative() {
+  const txt = EL.negOut.textContent;
+  if(!txt || txt.startsWith('(')) {
+    showToast('✗ Сначала выберите элементы негативного промпта ниже');
+    return;
+  }
+  navigator.clipboard.writeText(txt)
+    .then(() => showToast('✓ Негативный промпт скопирован'))
+    .catch(() => {
+      const ta = document.createElement('textarea');
+      ta.value = txt;
+      ta.style.cssText = 'position:fixed;opacity:0;pointer-events:none';
+      document.body.appendChild(ta);
+      ta.select();
+      try { document.execCommand('copy'); showToast('✓ Негативный промпт скопирован (fallback)'); }
+      catch(e) { showToast('✗ Не удалось скопировать'); }
+      document.body.removeChild(ta);
+    });
+}
+
+/* ═══════════════════════════════════════
+   PRESETS — ЛИЧНОЕ ДЕЛО
+═══════════════════════════════════════ */
+const PRESET_KEY = 'dnahero_presets_v1';
+
+let _presetsCache = null;
+function loadPresets() {
+  if(_presetsCache !== null) return _presetsCache;
+  try { _presetsCache = JSON.parse(localStorage.getItem(PRESET_KEY) || '[]'); }
+  catch(e) { _presetsCache = []; }
+  return _presetsCache;
+}
+function savePresets(arr) {
+  try {
+    localStorage.setItem(PRESET_KEY, JSON.stringify(arr));
+    _presetsCache = arr; // only update cache AFTER successful write
+  } catch(e) {
+    // localStorage full or unavailable — keep existing cache intact, show nothing
+  }
+}
+
+let currentPresetName = null;
+
+const deloSelectorEl = document.querySelector('.hdr-delo-selector');
+const deloDropdownEl = document.getElementById('deloDropdown');
+
+document.addEventListener('mousedown', e => {
+  if(deloSelectorEl && !deloSelectorEl.contains(e.target)) {
+    deloDropdownEl.classList.remove('open');
+    document.getElementById('deloField').classList.remove('open');
+  }
+});
+
+function toggleDeloDropdown() {
+  deloDropdownEl.classList.toggle('open');
+  const isOpen = deloDropdownEl.classList.contains('open');
+  document.getElementById('deloField').classList.toggle('open', isOpen);
+  if(isOpen) {
+    renderDeloList();
+    setTimeout(() => {
+      if(deloDropdownEl.classList.contains('open'))
+        document.getElementById('deloInput').focus();
+    }, 50);
+  }
+}
+
+function renderDeloList() {
+  const list = EL.deloList;
+  const presets = loadPresets();
+  list.innerHTML = '';
+  if(!presets.length) {
+    list.innerHTML = '<div class="hdr-delo-empty">— дел не заведено —</div>';
+    return;
+  }
+  presets.forEach((p, i) => {
+    const el = document.createElement('div');
+    el.className = 'hdr-delo-item' + (p.name === currentPresetName ? ' current' : '');
+    el.addEventListener('mousedown', e => e.stopPropagation());
+
+    const nameSpan = document.createElement('span');
+    nameSpan.className = 'hdr-delo-item-name';
+    nameSpan.textContent = p.name;
+    nameSpan.addEventListener('click', () => { loadPreset(i); deloDropdownEl.classList.remove('open'); document.getElementById('deloField').classList.remove('open'); });
+
+    // Rename icon
+    const renBtn = document.createElement('span');
+    renBtn.className = 'hdr-delo-item-icon';
+    renBtn.title = 'Переименовать';
+    renBtn.textContent = '✎';
+    renBtn.addEventListener('click', e => { e.stopPropagation(); startRename(el, nameSpan, i); });
+
+    // Duplicate icon
+    const dupBtn = document.createElement('span');
+    dupBtn.className = 'hdr-delo-item-icon';
+    dupBtn.title = 'Дублировать';
+    dupBtn.textContent = '⎘';
+    dupBtn.addEventListener('click', e => { e.stopPropagation(); duplicatePreset(i); });
+
+    const delSpan = document.createElement('span');
+    delSpan.className = 'hdr-delo-item-icon hdr-delo-item-del';
+    delSpan.title = 'Удалить';
+    delSpan.textContent = '×';
+    delSpan.addEventListener('click', e => { e.stopPropagation(); deletePreset(i); });
+
+    el.appendChild(nameSpan);
+    el.appendChild(renBtn);
+    el.appendChild(dupBtn);
+    el.appendChild(delSpan);
+    list.appendChild(el);
+  });
+}
+
+function startRename(rowEl, nameSpan, i) {
+  if(rowEl.querySelector('.hdr-delo-rename-input')) return; // already open
+  const oldName = nameSpan.textContent;
+  const inp = document.createElement('input');
+  inp.type = 'text';
+  inp.className = 'hdr-delo-rename-input';
+  inp.value = oldName;
+  rowEl.replaceChild(inp, nameSpan);
+  inp.focus(); inp.select();
+  let committed = false;
+  function commit() {
+    if(committed) return;
+    const newName = inp.value.trim();
+    if(newName && newName !== oldName) {
+      const presets = [...loadPresets()];
+      const conflict = presets.findIndex((p, idx) => idx !== i && p.name === newName);
+      if(conflict !== -1) {
+        showToast('✗ Имя уже занято');
+        // defer focus so blur doesn't re-fire commit immediately
+        setTimeout(() => { if(rowEl.contains(inp)) inp.focus(); }, 0);
+        return;
+      }
+      committed = true;
+      presets[i].name = newName;
+      savePresets(presets);
+      if(currentPresetName === oldName) {
+        currentPresetName = newName;
+        EL.deloName.textContent = newName;
+      }
+      showToast(`✓ Переименовано: «${newName}»`);
+    } else {
+      committed = true;
+    }
+    renderDeloList();
+  }
+  inp.addEventListener('blur', commit);
+  inp.addEventListener('keydown', e => {
+    if(e.key === 'Enter')  { e.preventDefault(); inp.blur(); }
+    if(e.key === 'Escape') { committed = true; renderDeloList(); }
+  });
+}
+
+function duplicatePreset(i) {
+  const presets = [...loadPresets()];
+  const src = presets[i];
+  // find unique name
+  let base = src.name + ' · копия';
+  let candidate = base;
+  let n = 2;
+  while(presets.some(p => p.name === candidate)) { candidate = base + ' ' + n++; }
+  const copy = Object.assign({}, src, { name: candidate });
+  presets.splice(i + 1, 0, copy);
+  savePresets(presets);
+  showToast(`✓ Дублировано: «${candidate}»`);
+  renderDeloList();
+}
+
+/* ═══════════════════════════════════════
+   STATE CAPTURE / APPLY — shared by «Личное дело»
+   presets and the in-memory history snapshots
+═══════════════════════════════════════ */
+function captureStateEntry(name) {
+  // Sync textarea values into state before capturing (debounced handler may not have fired yet)
+  S.charDesc = EL.charDesc.value;
+  S.extra    = EL.extraNotes.value;
+  return {
+    name,
+    charDesc: S.charDesc, extra: S.extra,
+    gender: S.gender, pose: S.pose, ethnic: S.ethnic,
+    ageType: S.ageType, mood: S.mood,
+    bg: S.bg, light: S.light, cam: S.cam, ar: S.ar, style: S.style,
+    views: Array.from(S.views), injuries: Array.from(S.injuries),
+    wet: S.wet, snow: S.snow, wind: S.wind, dust: S.dust, wear: S.wear, damage: S.damage,
+    negActive: Array.from(negActive),
+    negCustom: EL.negCustom.value
+  };
+}
+
+function applyStateEntry(p) {
+  S.charDesc = p.charDesc || ''; S.extra = p.extra || '';
+  S.gender = p.gender || '';
+  S.pose = (p.pose && POSE_MAP[p.pose]) ? p.pose : 'apose';
+  S.ethnic = p.ethnic || '';
+  S.ageType = p.ageType || ''; S.mood = p.mood || 'neutral';
+  S.bg = p.bg || S_DEFAULT.bg; S.light = p.light || S_DEFAULT.light;
+  S.cam = p.cam || S_DEFAULT.cam; S.ar = p.ar || S_DEFAULT.ar; S.style = p.style || S_DEFAULT.style;
+  const loadedViews = p.views && p.views.length ? p.views : S_DEFAULT.views;
+  S.views = new Set(loadedViews);
+  S.injuries = new Set(p.injuries || []);
+  S.wet=p.wet||0; S.snow=p.snow||0; S.wind=p.wind||0; S.dust=p.dust||0; S.wear=p.wear||0; S.damage=p.damage||0;
+
+  EL.charDesc.value   = S.charDesc;
+  EL.extraNotes.value = S.extra;
+
+  const syncSingle = (groupId, val, cls) => {
+    document.getElementById(groupId).querySelectorAll('.chip').forEach(c => {
+      c.classList.remove('on','on-teal','on-byp');
+      if(c.dataset.val === val) c.classList.add(cls);
+    });
+  };
+  syncSingle('genderGroup', S.gender, 'on'); syncSingle('poseGroup', S.pose, 'on');
+  syncSingle('ethnicGroup', S.ethnic, 'on'); syncSingle('ageGroup',  S.ageType, 'on');
+  document.getElementById('moodGroup').querySelectorAll('.chip').forEach(c => {
+    c.classList.remove('on','on-teal');
+    if(c.dataset.val === S.mood) { c.classList.add('on-teal'); c.classList.add('on'); }
+  });
+  viewChips.forEach(c => { c.classList.remove('on'); if(S.views.has(c.dataset.val)) c.classList.add('on'); });
+  injuryChips.forEach(c => { c.classList.remove('on-byp'); if(S.injuries.has(c.dataset.val)) c.classList.add('on-byp'); });
+  // Single-pass update for bg/light/cam/ar/style groups (remove old, add new in one iteration)
+  ['bgGroup','lightGroup','camGroup','arGroup','styleGroup'].forEach(gid => {
+    const key = GROUP_KEY_MAP[gid];
+    GROUP_CHIPS_CACHE[gid].forEach(c => {
+      c.classList.toggle('on', c.dataset.val === S[key]);
+    });
+  });
+  SLIDER_CONFIG.forEach(([sid, vid, key]) => {
+    document.getElementById(sid).value = S[key];
+    document.getElementById(vid).textContent = S[key];
+  });
+
+  // restore negative prompt
+  negActive.clear();
+  (p.negActive || []).forEach(id => negActive.add(id));
+  document.querySelectorAll('.neg-chip').forEach(el => {
+    el.classList.toggle('on', negActive.has(el.dataset.id));
+  });
+  updateNegSelectAllBtn();
+  EL.negCustom.value = p.negCustom || '';
+}
+
+function savePreset() {
+  const input = document.getElementById('deloInput');
+  const name = input.value.trim();
+  if(!name) { input.focus(); return; }
+  const presets = [...loadPresets()]; // copy — never mutate the cached array directly
+  const existingIdx = presets.findIndex(p => p.name === name);
+  const entry = captureStateEntry(name);
+  const isUpdate = existingIdx !== -1;
+  if(isUpdate) {
+    presets[existingIdx] = entry;
+  } else {
+    presets.push(entry);
+  }
+  savePresets(presets);
+  input.value = '';
+  currentPresetName = name;
+  EL.deloName.textContent = name;
+  deloDropdownEl.classList.remove('open');
+  document.getElementById('deloField').classList.remove('open');
+  showToast(isUpdate ? `✓ Дело «${name}» обновлено` : `✓ Дело «${name}» заведено`);
+  document.getElementById('deloField')?.classList.remove('unsaved');
+  render();
+  renderDeloList();
+}
+
+function loadPreset(i) {
+  const presets = loadPresets();
+  const p = presets[i];
+  if(!p) return;
+
+  applyStateEntry(p);
+
+  currentPresetName = p.name;
+  EL.deloName.textContent = p.name;
+  document.getElementById('deloField')?.classList.remove('unsaved');
+  histCurrent = -1;
+  _lastAutoSerial = null;
+  showToast(`✓ Дело «${p.name}» загружено`);
+
+  render();
+  renderDeloList();
+}
+
+function deletePreset(i) {
+  const presets = [...loadPresets()];
+  const deleted = presets[i]?.name;
+  presets.splice(i, 1);
+  savePresets(presets);
+  if(currentPresetName === deleted) {
+    currentPresetName = null;
+    EL.deloName.textContent = '_________';
+    document.getElementById('deloField')?.classList.remove('unsaved');
+    render();
+  }
+  showToast('✓ Дело удалено');
+  renderDeloList();
+}
+
+renderDeloList();
+
+/* ═══════════════════════════════════════
+   HISTORY — in-memory prompt snapshots
+═══════════════════════════════════════ */
+const HIST_MAX = 8;
+let historyStack = [];   // [{label, state, prompt}]
+let histCurrent  = -1;   // index into historyStack of what's shown (-1 = live)
+
+function saveSnapshot(silent = false) {
+  S.charDesc = EL.charDesc.value;
+  S.extra    = EL.extraNotes.value;
+  const snap = captureStateEntry('_hist');
+  const promptText = EL.out.textContent;
+
+  // Build a meaningful label: preset name (if any) + active views + timestamp
+  const viewsShort = [...S.views].map(v => (VIEW_RU[v] || v).replace(/_/g,' ').replace(/\(.*?\)/g,'').trim()).join(', ');
+  const timeStr = new Date().toLocaleTimeString('ru-RU', { hour:'2-digit', minute:'2-digit' });
+  const presetPart = currentPresetName ? currentPresetName + ' · ' : '';
+  const raw = presetPart + viewsShort;
+  const label = (raw.length > 36 ? raw.slice(0, 35) + '…' : raw) + '  ' + timeStr;
+
+  if(histCurrent !== -1 && histCurrent < historyStack.length - 1) {
+    historyStack = historyStack.slice(0, histCurrent + 1);
+  }
+  historyStack.push({ label, state: snap, prompt: promptText });
+  if(historyStack.length > HIST_MAX) historyStack.shift();
+  histCurrent = historyStack.length - 1;
+  renderHistory();
+  if(!silent) showToast('📌 Зафиксировано в истории');
+}
+
+function renderHistory() {
+  const strip = document.getElementById('historyStrip');
+  [...strip.querySelectorAll('.hist-item')].forEach(el => el.remove());
+  if(!historyStack.length) { strip.classList.add('empty'); return; }
+  strip.classList.remove('empty');
+  historyStack.forEach((snap, i) => {
+    const chip = document.createElement('span');
+    chip.className = 'hist-item' + (i === histCurrent ? ' current' : '');
+    chip.textContent = snap.label || '···';
+    // Tooltip via title (browser native — no layout cost)
+    chip.title = snap.title || snap.label || '';
+    chip.addEventListener('click', () => restoreSnapshot(i));
+    strip.appendChild(chip);
+  });
+}
+
+/* ═══════════════════════════════════════
+   PIN AS PRESET — 📌 saves current state to a named Дело
+═══════════════════════════════════════ */
+function pinAsPreset() {
+  if(!deloDropdownEl.classList.contains('open')) toggleDeloDropdown();
+  setTimeout(() => {
+    const input = document.getElementById('deloInput');
+    if(!input) return;
+    if(currentPresetName) { input.value = currentPresetName; }
+    input.focus(); input.select();
+  }, 60);
+}
+
+/* ═══════════════════════════════════════
+   AUTO-SNAPSHOT — section-aware, one slot per section
+═══════════════════════════════════════ */
+// Full name for tooltip, shown on hover over hist chip
+const SECTION_FULL = {
+  'ПЕР':'Персонаж', 'НАС':'Настроение', 'БЫП':'Повреждения',
+  'РАК':'Ракурсы',  'ФОН':'Фон',        'СВТ':'Освещение',
+  'КАМ':'Камера',   'АР' :'Соотношение','РНД':'Рендер/стиль',
+  'ПОГ':'Погода',   'ИЗН':'Износ',      'НЕГ':'Негатив',
+  'ОПИ':'Описание'
+};
+
+let _autoSnapTimer    = null;
+let _pendingSection   = null;   // section currently being debounced
+let _lastSection      = null;   // section of the last written snapshot
+let _lastAutoSerial   = null;
+
+function scheduleAutoSnapshot(sectionId) {
+  if(sectionId) _pendingSection = sectionId;
+  clearTimeout(_autoSnapTimer);
+  _autoSnapTimer = setTimeout(() => {
+    const serial = JSON.stringify([
+      EL.charDesc.value, EL.extraNotes.value, EL.negCustom.value,
+      S.gender, S.pose, S.ethnic, S.ageType, S.mood,
+      S.bg, S.light, S.cam, S.ar, S.style,
+      [...S.views].sort().join(','), [...S.injuries].sort().join(','),
+      S.wet, S.snow, S.wind, S.dust, S.wear, S.damage,
+      [...negActive].sort().join(',')
+    ]);
+    if(serial === _lastAutoSerial) return;
+    _lastAutoSerial = serial;
+    const sec = _pendingSection || '···';
+    _writeAutoSnap(sec);
+  }, 600);
+}
+
+function _writeAutoSnap(sec) {
+  S.charDesc = EL.charDesc.value;
+  S.extra    = EL.extraNotes.value;
+  const snap  = captureStateEntry('_hist');
+  const entry = { label: sec, title: SECTION_FULL[sec] || sec, state: snap, prompt: EL.out.textContent };
+
+  // Same section as last written → overwrite the last slot in place
+  if(sec === _lastSection && historyStack.length > 0 && histCurrent === historyStack.length - 1) {
+    historyStack[histCurrent] = entry;
+  } else {
+    // Different section → push new slot
+    if(histCurrent !== -1 && histCurrent < historyStack.length - 1) {
+      historyStack = historyStack.slice(0, histCurrent + 1);
+    }
+    historyStack.push(entry);
+    if(historyStack.length > HIST_MAX) historyStack.shift();
+    histCurrent = historyStack.length - 1;
+  }
+  _lastSection = sec;
+  renderHistory();
+}
+
+function restoreSnapshot(i) {
+  const snap = historyStack[i];
+  if(!snap) return;
+  histCurrent = i;
+  applyStateEntry(snap.state);
+  // Don't clear currentPresetName — if a preset was loaded, it stays as context.
+  // checkUnsaved() inside render() will mark it dirty if state diverged.
+  renderHistory();
+  render();
+  showToast('↩ История: снапшот ' + (i + 1));
+}
+
+/* ═══════════════════════════════════════
+   UNSAVED-CHANGES INDICATOR
+═══════════════════════════════════════ */
+function checkUnsaved() {
+  const field = document.getElementById('deloField');
+  if(!currentPresetName || !field) return;
+  const presets = loadPresets();
+  const saved = presets.find(p => p.name === currentPresetName);
+  if(!saved) { field.classList.remove('unsaved'); return; }
+  // Read current UI values directly — don't mutate S as a side effect
+  const curCharDesc = EL.charDesc.value;
+  const curExtra    = EL.extraNotes.value;
+  const curNegCustom = EL.negCustom.value;
+  const keys = ['gender','pose','ethnic','ageType','mood','bg','light','cam','ar','style'];
+  const sliderKeys = ['wet','snow','wind','dust','wear','damage'];
+  // Base fields are always present in valid presets.
+  // Slider fields may be absent in presets saved before sliders were added —
+  // treat missing value as 0 (the slider default) to avoid false "unsaved" state.
+  let dirty = keys.some(k => S[k] !== saved[k]);
+  if(!dirty) dirty = sliderKeys.some(k => S[k] !== (saved[k] ?? 0));
+  if(!dirty) dirty = (curCharDesc !== (saved.charDesc || ''));
+  if(!dirty) dirty = (curExtra    !== (saved.extra    || ''));
+  if(!dirty) dirty = (curNegCustom !== (saved.negCustom || ''));
+  if(!dirty) dirty = JSON.stringify([...S.views].sort())    !== JSON.stringify([...saved.views].sort());
+  if(!dirty) dirty = JSON.stringify([...S.injuries].sort()) !== JSON.stringify([...saved.injuries].sort());
+  if(!dirty) dirty = JSON.stringify([...negActive].sort())  !== JSON.stringify([...saved.negActive].sort());
+  field.classList.toggle('unsaved', dirty);
+}
+
+let debounceTimer;
+function debouncedRender() {
+  clearTimeout(debounceTimer);
+  debounceTimer = setTimeout(render, 180);
+}
+EL.charDesc.addEventListener('input',    e => { S.charDesc = e.target.value; _pendingSection = 'ОПИ'; debouncedRender(); });
+EL.extraNotes.addEventListener('input',  e => { S.extra    = e.target.value; _pendingSection = 'ОПИ'; debouncedRender(); });
+
+/* ═══════════════════════════════════════
+   MODULE-LEVEL CONSTANTS
+═══════════════════════════════════════ */
+// ANGLE_ORDER defined here once — previously re-allocated inside render() on every call
+const ANGLE_ORDER = [
+  'front_view_(0°)', 'three-quarter_view_(45°)', 'left_side_view_(90°)',
+  'three-quarter_back_view_(135°)', 'back_view_(180°)', 'right_side_view_(270°)',
+  'close-up_face_portrait', 'overhead_top-down'
+];
+// Precomputed Map for O(1) lookup in sort comparator (replaces O(n) indexOf calls)
+const ANGLE_ORDER_MAP = new Map(ANGLE_ORDER.map((v, i) => [v, i]));
+
+/* ═══════════════════════════════════════
+   RENDER PROMPT
+═══════════════════════════════════════ */
+function render() {
+  const views   = Array.from(S.views)
+    .sort((a, b) => {
+      const ia = ANGLE_ORDER_MAP.has(a) ? ANGLE_ORDER_MAP.get(a) : 999;
+      const ib = ANGLE_ORDER_MAP.has(b) ? ANGLE_ORDER_MAP.get(b) : 999;
+      return ia - ib;
+    });
+  const vNames  = views.map(v => VIEW_RU[v] || v.replace(/_/g,' '));
+
+  // healed_scar is a permanent character trait, not an SFX makeup effect —
+  // keep it separate so it doesn't trigger SFX/BYPASS indicators or get
+  // mislabeled as "film-grade SFX makeup"
+  const sfxInjuries = [];
+  const permanentFeatures = [];
+  S.injuries.forEach(k => {
+    if(k === 'healed_scar') permanentFeatures.push(k);
+    else sfxInjuries.push(k);
+  });
+
+  const sfxActive    = sfxInjuries.length > 0;
+  const ageFrame     = AGE_FRAME[S.ageType] || null;
+  const moodData     = MOOD_MAP[S.mood] || MOOD_MAP.neutral;
+
+  const conds = [];
+  [wetDesc(S.wet), snowDesc(S.snow), windDesc(S.wind),
+   dustDesc(S.dust), wearDesc(S.wear), damageDesc(S.damage)
+  ].forEach(d => { if(d) conds.push(d); });
+
+  const charLine = S.charDesc.trim();
+  const transparentNote = S.bg.includes('transparent')
+    ? '\n— Output requires clean PNG alpha channel. No fringing, no anti-alias artifacts on silhouette edges. Character edge must be clean enough for compositing.\n'
+    : '';
+
+  const allZero  = !conds.length;
+  const extraText = S.extra.trim();
+  updateContextNegChips(); // rebuild contextual neg chips based on current S state
+  renderNeg(); // sync negative prompt whenever render fires (ageType changes, etc.)
+  const stanceNote = POSE_MAP[S.pose] || POSE_MAP.apose;
+
+  let p = '';
+
+  if(promptMode === 'short') {
+    p += `Photorealistic character turnaround from attached photo — face, proportions, costume exact copy. Views: ${vNames.join(', ')}. USSR 1950–60s drama production. Photorealistic, real human anatomy, period-accurate.\n`;
+    p += `FACE LOCK — source of truth is attached photo. Copy exactly: bone structure, eye shape and spacing, nose shape, lip shape, ear placement, skin tone, hair colour and texture. Do not idealise, average, or invent any facial feature. Every panel instantly recognisable as same person from photo.\n`;
+    if(charLine) p += `\nCharacter: ${charLine}\n`;
+    if(GENDER_MAP[S.gender]) p += `${GENDER_MAP[S.gender]}\n`;
+    if(ageFrame) {
+      const ageLine = S.ageType==='elder60'?'Elderly, approx. 60–70 y.o. Age-accurate anatomy.':
+                      S.ageType==='elder80'?'Very elderly, approx. 75–85 y.o. Advanced age anatomy.':
+                      S.ageType==='teen'   ?'Adolescent, approx. 14–16 y.o.':
+                      S.ageType==='child7' ?'Child approx. 7–8 y.o. Fully clothed.':
+                                            'Toddler approx. 3–4 y.o. Fully clothed.';
+      p += `Age: ${ageLine}\n`;
+    }
+    if(S.mood !== 'neutral') p += `\nMood: ${moodData.label} — ${moodData.prompt}\n`;
+    if(permanentFeatures.length > 0) {
+      p += `\n${INJURY_MAP['healed_scar']}\n`;
+    }
+    if(sfxInjuries.length > 0) {
+      p += `\nFilm-grade SFX makeup — continuity reference for makeup department: `;
+      p += sfxInjuries.map(k => {
+        const s = INJURY_MAP[k] || k;
+        // Strip the leading label. Most entries are "LABEL: description" — strip
+        // through the first colon. A few (frostbite_cheeks, chapped_lips_cold) are
+        // "ALL-CAPS LABEL — description: rest", where the first colon is INSIDE the
+        // description; for those, strip only the "LABEL — " prefix instead.
+        const dashLabel = s.match(/^([A-Z0-9 /]+)\s—\s/);
+        return dashLabel ? s.slice(dashLabel[0].length) : s.replace(/^[^:]+:\s*/, '');
+      }).join(' / ') + '\n';
+    }
+    if(!allZero) { p += `\nConditions: `; p += conds.join(' / ') + '\n'; }
+    if(extraText) p += `\n${extraText}\n`;
+    p += `\nSetting: Soviet Union 1950–60s. BG: ${S.bg}\n`;
+    if(ETHNIC_MAP[S.ethnic]) p += `${ETHNIC_MAP[S.ethnic]}\n`;
+    p += `Camera: ${S.cam} · Lighting: ${S.light}\n`;
+    p += transparentNote;
+    const shortHasFullBody = views.some(v => !v.includes('close-up') && !v.includes('overhead'));
+    const bodyNote = shortHasFullBody ? 'Full body all rotation panels. ' : '';
+    if(shortHasFullBody) p += `${stanceNote}\n`;
+    p += `PROPORTIONS LOCK: head-to-body ratio identical in every panel. COSTUME LOCK: all visible costume details identical in every panel. ${bodyNote}Ultra-high detail.\n`;
+    p += `\n${S.ar} ${S.style} --q 2`;
+
+  } else {
+    const condBlock = allZero
+      ? `\n[CONDITIONS — STERILE REFERENCE STATE]\n— All condition parameters are zero. Render character in pristine studio-clean state.\n— Costume and skin: no moisture, no dirt, no snow, no wind effect, no wear, no damage. Factory-clean baseline.\n`
+      : `\n[CONDITIONS — apply simultaneously to costume and body]\n${conds.map((c,i)=>`  ${i+1}. ${c}`).join('\n')}\n— All conditions above must be physically coherent and simultaneously visible on the character. Apply on top of the reference appearance.\n— Conditions affect only the character's physical state and environment. Image rendering quality remains modern photorealistic regardless of conditions — no film grain, no desaturation, no vintage artifacts.\n`;
+
+    let injuryBlock = '';
+    let permanentFeaturesBlock = '';
+    if(sfxInjuries.length > 0) {
+      const injLines = sfxInjuries.map((k,i) => `  ${i+1}. ${INJURY_MAP[k]||k}`).join('\n');
+      injuryBlock = `\n[SFX MAKEUP CONTINUITY — FILM PRODUCTION REFERENCE]\n— Context: 1950s Soviet Union drama film. The following are theatrical SFX makeup / prosthetic makeup applications on the character, documented for production continuity. Render each accurately as a realistic non-graphic film-grade SFX makeup effect:\n${injLines}\n`;
+    }
+    if(permanentFeatures.length > 0) {
+      permanentFeaturesBlock = `— ${INJURY_MAP['healed_scar']} Must appear identically in every panel.\n`;
+    }
+
+    let moodBlock = '';
+    if(S.mood !== 'neutral') moodBlock = `\n[MOOD · EXPRESSION · ${moodData.label.toUpperCase()}]\n${moodData.prompt}\n— Natural posture adjustment consistent with this emotional state is permitted and required.\n`;
+
+    let ageBlock = '';
+    if(ageFrame) ageBlock = `\n[CHARACTER TYPE — PRODUCTION NOTE]\n${ageFrame}\n`;
+
+    const extraBlock = extraText ? `\n[EXTRA INSTRUCTIONS]\n${extraText}\n` : '';
+
+    p += `[PRIMARY DIRECTIVE]\n`;
+    p += `Photorealistic character turnaround. Source of truth: the attached photograph.\n`;
+    p += `— Copy the character's appearance from the photo with absolute fidelity: face, head shape, hair, skin tone, body proportions, costume, materials, accessories — everything exactly as seen.\n`;
+    p += `— Do not interpret, idealise, average, or invent any feature. Reproduce what is in the photograph.\n`;
+    p += `— Do not average facial features with a typical face of this demographic. The person in the photo is a specific individual — copy their unique, particular geometry.\n`;
+    p += `— Rotate and render this exact character in the following views: ${vNames.join(', ')}.\n`;
+    p += `— Every panel must be instantly and unambiguously recognisable as the same person from the photo.\n`;
+
+    p += `\n[FACE LOCK — IDENTITY SOURCE]\n`;
+    p += `— The attached photograph is the sole source of facial identity. Extract and lock these features exactly: bone structure, eye shape and spacing, nose bridge and tip shape, lip shape and fullness, ear placement and shape, skin tone, hair colour and texture.\n`;
+    p += `— Do not average with a demographic mean. Do not idealise. Do not substitute with a generic face. Copy the unique, particular geometry of the specific individual in the photo with zero deviation.\n`;
+    p += `— This face lock persists regardless of conditions, lighting, season, or environmental effects applied below. Conditions and environment affect costume and surroundings only — never facial geometry, bone structure, or proportions.\n`;
+    p += `— Note: if the reference photo is poorly lit, dirty, damaged, or partially obscured — extract facial geometry through these obstacles. The face from the photo is the identity anchor regardless of photo quality.\n`;
+
+    let characterBlock = '';
+    if(charLine) characterBlock += `${charLine}\n`;
+    if(GENDER_MAP[S.gender]) characterBlock += `${GENDER_MAP[S.gender]}\n`;
+    if(permanentFeaturesBlock) characterBlock += permanentFeaturesBlock;
+    if(characterBlock) p += `\n[CHARACTER]\n${characterBlock}`;
+
+    // moodBlock and ageBlock are top-level blocks — not nested inside [CHARACTER]
+    if(moodBlock) p += moodBlock;
+    if(ageFrame)  p += ageBlock;
+
+    p += `\n[TASK]\n`;
+    const taskDesc = views.length === 1
+      ? `Render the character shown in the attached image in the following single view: ${vNames[0]}. Generate exactly 1 panel.`
+      : `Generate a turnaround for the character shown in the attached image. Generate exactly ${views.length} panels, one per view, in this order: ${vNames.join(', ')}.`;
+    p += `${taskDesc}\n`;
+    const hasCloseUp  = views.some(v => v.includes('close-up'));
+    const hasOverhead = views.some(v => v.includes('overhead'));
+    const hasFullBody = views.some(v => !v.includes('close-up') && !v.includes('overhead'));
+    if(hasFullBody) p += `${stanceNote}\n`;
+    const topRow = Math.ceil(views.length / 2);
+    const botRow = views.length - topRow;
+    if(views.length === 1) {
+      p += `— Single panel. No decorative borders, no labels overlaid on character.\n`;
+    } else {
+      const layoutLine = views.length <= 4
+        ? `— Arrange all ${views.length} panels in a single horizontal row, left to right.`
+        : `— Arrange ${views.length} panels in two horizontal rows: ${topRow} panels on the top row, ${botRow} panels on the bottom row, left to right within each row.`;
+      p += `${layoutLine} All panels equal width and height. No decorative borders, no labels overlaid on character.\n`;
+    }
+
+    if(injuryBlock) p += injuryBlock;
+    p += condBlock;
+    p += extraBlock;
+
+    p += `\n[PROJECT CONTEXT]\n`;
+    p += `Setting: Soviet Union, 1950–1960s. Drama film production. Period-accurate visual reference.\n`;
+    if(ETHNIC_MAP[S.ethnic]) p += `${ETHNIC_MAP[S.ethnic]}\n`;
+    p += `— Background / Location: ${S.bg}\n`;
+
+    const scaleRule = (!hasCloseUp && !hasOverhead)
+      ? `— Same character scale and crop height in every panel. Character's head occupies the same fraction of panel height in every view — do not resize the character between panels.\n`
+      : hasFullBody
+        ? `— Same character scale and crop height across all full-body rotation panels. Close-up panels (Face) and Overhead panels use their own framing rules — see [TECHNICAL].\n`
+        : `— Each panel uses the framing appropriate for its listed view type — see [TECHNICAL].\n`;
+
+    p += `\n[CONSISTENCY — ABSOLUTE REQUIREMENTS]\n`;
+    p += `— FACE LOCK: Identical facial geometry across every panel, as locked from the source photo above — bone structure, eye shape and spacing, nose, lip shape, ear placement. Zero drift between views.\n`;
+    p += `— PROPORTIONS LOCK: Head-to-body ratio, limb length, shoulder width, torso depth — identical in every panel.\n`;
+    p += `— Skin tone, hair colour and texture held constant across all panels.\n`;
+    p += `— Every costume element — fabric colour, texture, wear, stitching, patches, hardware, accessories — identical in every panel.\n`;
+    p += scaleRule;
+    p += `— Lighting physically consistent: shadows recalculate per view angle, cast from the same light source in all panels.\n`;
+    p += `— SFX makeup / injuries (if specified) reproduced consistently on correct body parts across all views.\n`;
+    p += `— Background identical across all panels: same location, same depth, same atmospheric conditions, same time of day.\n`;
+    p += `— Focal length held constant across all panels. No wide-angle distortion on any view. Portrait-safe compression (85mm equivalent or longer) — wide angle physically deforms facial proportions and breaks identity.\n`;
+
+    let camPosLine;
+    if(!hasOverhead && !hasCloseUp) {
+      camPosLine = `— Camera position identical in all panels: eye-level, horizontal axis, no tilt, no dutch angle, no perspective distortion. Camera does not move between panels — only the character rotates.\n`;
+    } else {
+      const sentences = [];
+      if(hasFullBody) sentences.push(`For full-body rotation panels: camera fixed at eye-level, horizontal axis, no tilt, no dutch angle, no perspective distortion.`);
+      if(hasCloseUp)  sentences.push(`For Face Close-Up panel: camera zooms to head-and-neck crop — this is intentional.`);
+      if(hasOverhead) sentences.push(`For Overhead / Top-Down panel: camera directly above the character, looking straight down, 90° nadir angle.`);
+      sentences.push(`${views.length === 1 ? 'This panel uses' : 'Each panel uses'} the camera angle appropriate for its listed view.`);
+      camPosLine = `— ${sentences.join(' ')}\n`;
+    }
+
+    p += `\n[TECHNICAL]\n`;
+    p += `— Camera: ${S.cam}\n`;
+    p += `— Lighting: ${S.light}\n`;
+    p += camPosLine;
+    p += transparentNote;
+    if(hasFullBody) p += `— Full body visible head-to-feet in all rotation panels (close-up/overhead panels excluded — see below).\n`;
+    if(hasCloseUp) p += `— Face Close-Up panels: head and neck, top of shoulders barely visible, face fills 70–80% of panel height.\n`;
+    p += `— Ultra-high detail: fabric weave, skin pores, hair strand separation, micro-scratches on hardware — all fully resolved.\n`;
+    p += `— Photorealistic. Real human anatomy. Not illustrated, not stylized, not painted.\n`;
+    p += `— Period accuracy applies to costume, materials, and props only. Image rendering quality is modern photorealistic — no film grain, no colour fading, no vintage photographic artifacts.\n`;
+
+    p += `\n${S.ar} ${S.style} --q 2`;
+  }
+
+  EL.out.innerHTML = annotatePrompt(p);
+  checkUnsaved();
+
+  const trimmedP = p.trim();
+  const wc = trimmedP ? trimmedP.split(/\s+/).length : 0;
+  EL.wc.textContent = wc;
+  EL.cc.textContent = p.length;
+  EL.tc.textContent = Math.round(p.length/4);
+
+
+
+  EL.sViews.textContent = `Ракурсы: ${vNames.join(', ')}`;
+  EL.sCond.textContent  = conds.length ? `Условия: ${conds.length} активно` : 'Условия: ✦ ЧИСТО';
+  const BG_LABEL = {
+    'clean white seamless studio backdrop': 'Белый',
+    'neutral light gray seamless backdrop': 'Серый',
+    'solid pure black infinite void backdrop': 'Чёрный',
+    'fully transparent background — PNG alpha channel, no background pixels': 'Прозрачный PNG',
+    'neutral light-to-white photography sweep gradient': 'Градиент'
+  };
+  EL.sBg.textContent = `Фон: ${BG_LABEL[S.bg] || S.bg.split(' ').slice(0,2).join(' ')}`;
+
+  const modeStr = [];
+  if(S.ageType) modeStr.push(
+    S.ageType==='child7'  ? '🧒 Ребёнок 7–8'    :
+    S.ageType==='child3'  ? '👶 Дошкольник 3–4' :
+    S.ageType==='elder60' ? '👴 Пожилой 60–70'  :
+    S.ageType==='elder80' ? '🧓 Старик 75–85'   :
+                            '🧑 Подросток 14–16'
+  );
+  if(sfxActive)         modeStr.push(`⚡ SFX×${sfxInjuries.length}`);
+  if(permanentFeatures.length) modeStr.push('✂️ Шрам');
+  if(S.mood !== 'neutral') modeStr.push(MOOD_MAP[S.mood]?.label || S.mood);
+  EL.sMode.textContent = modeStr.join(' · ');
+
+  // Modified dot on collapsed section headers — lights up when value differs from default
+  const viewsDefault = new Set(S_DEFAULT.views);
+  const viewsChanged = S.views.size !== viewsDefault.size ||
+    [...S.views].some(v => !viewsDefault.has(v));
+  [
+    ['shChar',    S.charDesc.trim() !== ''],
+    ['shGender',  S.gender !== S_DEFAULT.gender],
+    ['shPose',    S.pose   !== S_DEFAULT.pose],
+    ['shEthnic',  S.ethnic !== S_DEFAULT.ethnic],
+    ['shAge',     S.ageType !== S_DEFAULT.ageType],
+    ['shViews',   viewsChanged],
+    ['shAr',    S.ar    !== S_DEFAULT.ar],
+    ['shBg',      S.bg !== S_DEFAULT.bg],
+    ['shLight', S.light !== S_DEFAULT.light],
+    ['shCam',   S.cam   !== S_DEFAULT.cam],
+    ['shWeather', S.wet !== S_DEFAULT.wet || S.snow !== S_DEFAULT.snow || S.wind !== S_DEFAULT.wind || S.dust !== S_DEFAULT.dust],
+    ['shWear',    S.wear !== S_DEFAULT.wear || S.damage !== S_DEFAULT.damage],
+    ['shSfx',     S.injuries.size > 0],
+    ['shMood',    S.mood !== S_DEFAULT.mood],
+    ['shStyle', S.style !== S_DEFAULT.style],
+    ['shExtra', S.extra.trim() !== ''],
+  ].forEach(([id, modified]) => {
+    document.getElementById(id)?.querySelector('.sh-mod')?.classList.toggle('on', modified);
+  });
+
+  // ── Preview text in collapsed section headers ──
+  // Helper: read visible label of the active chip in a group
+  function chipLabel(groupId) {
+    const active = document.getElementById(groupId)?.querySelector('.chip.on, .chip.on-teal, .chip.on-byp');
+    return active ? active.textContent.trim() : '';
+  }
+  function setPreview(id, text) {
+    const el = document.getElementById(id);
+    if(!el) return;
+    el.textContent = text ? text : '';
+    // hide mod-dot when preview has text
+    const sh = el.closest('.sh, .sh-bypass');
+    if(sh) sh.querySelector('.sh-mod')?.classList.toggle('hide-by-preview', !!text);
+  }
+
+  // Helper: extract only the leading emoji from a string, or return full text if no emoji
+  function emojiOnly(str) {
+    // Take everything up to the first space — that's the emoji part
+    // If no space, return the whole string (no-emoji chip like "Взрослый")
+    const spaceIdx = str.indexOf(' ');
+    return spaceIdx === -1 ? str : str.slice(0, spaceIdx);
+  }
+  function chipLabelEmojiOnly(groupId) {
+    const active = document.getElementById(groupId)?.querySelector('.chip.on, .chip.on-teal');
+    if(!active) return '';
+    return emojiOnly(active.textContent.trim());
+  }
+
+  // Персонаж
+  setPreview('prvChar',    S.charDesc.trim() ? S.charDesc.trim().slice(0, 28) + (S.charDesc.trim().length > 28 ? '…' : '') : '');
+  setPreview('prvGender',  chipLabel('genderGroup'));
+  setPreview('prvPose',    chipLabel('poseGroup'));
+  setPreview('prvEthnic',  chipLabel('ethnicGroup'));
+  setPreview('prvAge',     chipLabelEmojiOnly('ageGroup'));
+  // Кадр
+  const viewLabels = [...document.getElementById('viewsGroup').querySelectorAll('.chip.on')].map(c => c.textContent.trim());
+  setPreview('prvViews',   viewLabels.length ? viewLabels.join(', ') : '');
+  setPreview('prvAr',      S.ar.replace('--ar ', ''));
+  setPreview('prvCam',     chipLabel('camGroup'));
+  // Окружение
+  setPreview('prvBg',      chipLabel('bgGroup'));
+  setPreview('prvLight',   chipLabel('lightGroup'));
+  // Weather: emoji + number only
+  const wxParts = [];
+  if(S.wet)    wxParts.push('💧' + S.wet);
+  if(S.snow)   wxParts.push('❄️' + S.snow);
+  if(S.wind)   wxParts.push('💨' + S.wind);
+  if(S.dust)   wxParts.push('🌫' + S.dust);
+  setPreview('prvWeather', wxParts.join(' '));
+  // Wear: emoji + number only
+  const wearParts = [];
+  if(S.wear)   wearParts.push('🧥' + S.wear);
+  if(S.damage) wearParts.push('🔴' + S.damage);
+  setPreview('prvWear',    wearParts.join(' '));
+  // SFX: show emojis of active injuries, not a count
+  const sfxEmoji = [...S.injuries].map(v => {
+    const chip = document.querySelector(`#injuryGroup .chip[data-val="${v}"]`);
+    return chip ? emojiOnly(chip.textContent.trim()) : '';
+  }).filter(Boolean);
+  setPreview('prvSfx', sfxEmoji.join(' '));
+  // Mood: emoji only
+  setPreview('prvMood',    chipLabelEmojiOnly('moodGroup'));
+  // Рендер
+  setPreview('prvStyle',   chipLabel('styleGroup'));
+  setPreview('prvExtra',   S.extra.trim() ? S.extra.trim().slice(0, 24) + (S.extra.trim().length > 24 ? '…' : '') : '');
+
+  scheduleAutoSnapshot();
+}
+
+/* ════════════════════════════════════════════════
+   PROMPT TERM ANNOTATION — hover tooltips on jargon
+════════════════════════════════════════════════ */
+function _esc(s) {
+  return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+function annotatePrompt(raw) {
+  // Escape HTML entities first (user text is in the prompt)
+  let h = _esc(raw);
+  // Annotate Nano Banana jargon — longer patterns first to avoid partial overlap.
+  // Use a NUL-delimited placeholder to "lock" each matched span so subsequent
+  // replacements don't re-match text that is already inside a ptip span.
+  // (Without this, step 1's span content is re-processed by steps 2 and 3,
+  //  causing nested ptip spans and broken tooltip regions.)
+  const T = (tip, txt) => `<span class="ptip" data-tip="${tip}">${txt}</span>`;
+  const slots = [];
+  const lock = (span) => { const i = slots.length; slots.push(span); return `\x00${i}\x00`; };
+
+  h = h.replace(/--style raw --stylize 0/g, m =>
+    lock(T('Режим RAW + явный запрет стилизации. Самый «сухой» и предсказуемый результат — Nano Banana практически не добавляет ничего от себя.', m)));
+  h = h.replace(/--style raw/g, m =>
+    lock(T('Style RAW — минимум художественной обработки Nano Banana. Промпт и референс воспроизводятся максимально буквально, без «улучшений» от модели.', m)));
+  h = h.replace(/--stylize (\d+)/g, (m, n) =>
+    lock(T(`Степень художественной стилизации Nano Banana: 0 = без стилизации, 1000 = максимум. Текущее значение: ${n}. Чем выше — тем сильнее модель отходит от референса и деталей промпта.`, m)));
+  h = h.replace(/--ar ([\d:]+)/g, (m, ratio) =>
+    lock(T(`Aspect ratio (соотношение сторон). Текущий формат: ${ratio}. Задаётся как ширина:высота — например 16:9 или 4:1 для широкой полосы.`, m)));
+  h = h.replace(/--q 2/g, m =>
+    lock(T('Quality — качество рендера. --q 2 = максимальное качество (медленнее и дороже по GPU-времени, но больше деталей).', m)));
+  h = h.replace(/--no\b/g, m =>
+    lock(T('Negative prompt — список того, чего НЕ должно быть в изображении. Всё что идёт после --no Nano Banana будет активно избегать.', m)));
+
+  // Restore all locked spans
+  return h.replace(/\x00(\d+)\x00/g, (_, i) => slots[+i]);
+}
+
+let toastTimer = null;
+function showToast(msg) {
+  if(toastTimer) clearTimeout(toastTimer);
+  EL.toast.textContent = msg;
+  EL.toast.classList.add('show');
+  toastTimer = setTimeout(() => { EL.toast.classList.remove('show'); toastTimer = null; }, 2400);
+}
+
+/* ═══════════════════════════════════════
+   COPY
+═══════════════════════════════════════ */
+function copyPrompt() {
+  navigator.clipboard.writeText(EL.out.textContent)
+    .then(() => showToast('✓ Скопировано в буфер'))
+    .catch(() => {
+      const ta = document.createElement('textarea');
+      ta.value = EL.out.textContent;
+      ta.style.cssText = 'position:fixed;opacity:0;pointer-events:none';
+      document.body.appendChild(ta);
+      ta.select();
+      try { document.execCommand('copy'); showToast('✓ Скопировано (fallback)'); }
+      catch(e) { showToast('✗ Не удалось скопировать'); }
+      document.body.removeChild(ta);
+    });
+}
+
+function copyAll() {
+  const mainPrompt = EL.out.textContent.trim();
+  const negRaw     = EL.negOut.textContent.trim();
+  // Strip the instructional prose preamble ("NEGATIVE PROMPT — strictly exclude…")
+  // so only the "--no [terms]" line is appended — the preamble must NOT leak into
+  // the positive-prompt region when the combined text is pasted into Nano Banana.
+  const noMatch  = negRaw.match(/--no .+/s);
+  const negPart  = (!negRaw.startsWith('(') && noMatch) ? noMatch[0].trim() : '';
+  const combined = negPart
+    ? mainPrompt + '\n' + negPart
+    : mainPrompt;
+  navigator.clipboard.writeText(combined)
+    .then(() => showToast(negPart ? '✓ Промпт + --no скопированы' : '✓ Промпт скопирован'))
+    .catch(() => {
+      const ta = document.createElement('textarea');
+      ta.value = combined;
+      ta.style.cssText = 'position:fixed;opacity:0;pointer-events:none';
+      document.body.appendChild(ta);
+      ta.select();
+      try { document.execCommand('copy'); showToast('✓ Скопировано (fallback)'); }
+      catch(e) { showToast('✗ Не удалось скопировать'); }
+      document.body.removeChild(ta);
+    });
+}
+
+/* ═══════════════════════════════════════
+   MODE / WRAP TOGGLES
+═══════════════════════════════════════ */
+function toggleMode() {
+  promptMode = promptMode === 'detailed' ? 'short' : 'detailed';
+  document.getElementById('btnModeIcon').style.fontSize = promptMode === 'short' ? '28px' : '8px';
+  EL.btnMode.classList.toggle('stamp-active', promptMode === 'short');
+  render();
+}
+function toggleWrap() {
+  wrapOn = !wrapOn;
+  EL.out.style.whiteSpace = wrapOn ? 'pre-wrap' : 'pre';
+  EL.btnWrap.classList.toggle('stamp-active', wrapOn);
+}
+
+/* ═══════════════════════════════════════
+   RESET
+═══════════════════════════════════════ */
+
+function resetState() {
+  S.views    = new Set(S_DEFAULT.views);
+  S.injuries = new Set();
+  Object.assign(S, {
+    bg: S_DEFAULT.bg, light: S_DEFAULT.light, cam: S_DEFAULT.cam,
+    ar: S_DEFAULT.ar, style: S_DEFAULT.style, ageType: S_DEFAULT.ageType,
+    mood: S_DEFAULT.mood,
+    gender: S_DEFAULT.gender, pose: S_DEFAULT.pose, ethnic: S_DEFAULT.ethnic,
+    wet: S_DEFAULT.wet, snow: S_DEFAULT.snow, wind: S_DEFAULT.wind,
+    dust: S_DEFAULT.dust, wear: S_DEFAULT.wear, damage: S_DEFAULT.damage,
+    charDesc: S_DEFAULT.charDesc, extra: S_DEFAULT.extra
+  });
+
+  [
+    { chips: viewChips,   activeVals: new Set(S_DEFAULT.views), cls: 'on',      extra: null },
+    { chips: ageChips,    activeVals: new Set(['']),             cls: 'on',      extra: null },
+    { chips: moodChips,   activeVals: new Set(['neutral']),      cls: 'on-teal', extra: 'on' },
+    { chips: genderChips, activeVals: new Set(['']),             cls: 'on',      extra: null },
+    { chips: poseChips,   activeVals: new Set(['apose']),        cls: 'on',      extra: null },
+    { chips: ethnicChips, activeVals: new Set(['']),             cls: 'on',      extra: null },
+  ].forEach(({ chips, activeVals, cls, extra }) => {
+    chips.forEach(c => {
+      c.classList.remove('on', 'on-teal');
+      if(activeVals.has(c.dataset.val)) { c.classList.add(cls); if(extra) c.classList.add(extra); }
+    });
+  });
+
+  // Single-pass update for bg/light/cam/ar/style groups (remove old, add new in one iteration)
+  ['bgGroup','lightGroup','camGroup','arGroup','styleGroup'].forEach(gid => {
+    const key = GROUP_KEY_MAP[gid];
+    GROUP_CHIPS_CACHE[gid].forEach(c => {
+      c.classList.toggle('on', c.dataset.val === S_DEFAULT[key]);
+    });
+  });
+
+  injuryChips.forEach(c => c.classList.remove('on-byp'));
+
+  SLIDER_CONFIG.forEach(([sid, vid, key]) => {
+    S[key] = 0;
+    document.getElementById(sid).value = 0;
+    document.getElementById(vid).textContent = 0;
+  });
+
+  EL.charDesc.value   = '';
+  EL.extraNotes.value = '';
+
+  // сброс негативного промпта
+  negActive.clear();
+  document.querySelectorAll('.neg-chip').forEach(el => el.classList.remove('on'));
+  updateNegSelectAllBtn();
+  EL.negCustom.value = '';
+
+  // сброс текущего дела
+  currentPresetName = null;
+  EL.deloName.textContent = '_________';
+  document.getElementById('deloField')?.classList.remove('unsaved');
+  historyStack = [];
+  histCurrent  = -1;
+  _lastAutoSerial = null;
+  renderHistory();
+
+  promptMode = 'detailed';
+  wrapOn = true;
+  document.getElementById('btnModeIcon').style.fontSize = '8px';
+  EL.btnMode.classList.remove('stamp-active');
+  EL.btnWrap.classList.add('stamp-active');
+  EL.out.style.whiteSpace = 'pre-wrap';
+  render();
+  renderDeloList();
+}
+
+/* ═══════════════════════════════════════
+   INIT
+═══════════════════════════════════════ */
+EL.btnWrap.classList.add('stamp-active');
+EL.out.style.whiteSpace = 'pre-wrap';
+updateNegSelectAllBtn();
+render();
+
+/* ═══════════════════════════════════════
+   TOOLTIP EDGE CONTAINMENT
+   Repositions [data-tip] tooltips that would
+   overflow the left/right edge of the viewport.
+═══════════════════════════════════════ */
+(function initTipEdgeContainment() {
+  const MARGIN = 8; // px breathing room from viewport edge
+  document.addEventListener('mouseover', e => {
+    const el = e.target.closest('[data-tip]');
+    if(!el) return;
+    el.classList.remove('tip-edge-l', 'tip-edge-r');
+
+    const tipWidth = el.classList.contains('ptip') ? 240 : 210;
+    const rect = el.getBoundingClientRect();
+    const center = rect.left + rect.width / 2;
+    const halfTip = tipWidth / 2;
+
+    if(center - halfTip < MARGIN) {
+      el.classList.add('tip-edge-l');
+    } else if(center + halfTip > window.innerWidth - MARGIN) {
+      el.classList.add('tip-edge-r');
+    }
+  });
+})();
+
+/* ═══════════════════════════════════════
+   SESSION LOGGER
+   Перехватывает все взаимодействия пользователя
+   с интерфейсом и логикой приложения за одну
+   сессию. Лог копируется кнопкой «◉ лог» в шапке
+   и передаётся в чат для анализа ошибок.
+═══════════════════════════════════════ */
+(function initSessionLogger() {
+  const LOG  = [];
+  const T0   = Date.now();
+  let   _seq = 0;
+
+  /* ── метаданные групп ── */
+  const GROUP_SECTION = {
+    viewsGroup:'РАК',  arGroup:'АР',    lightGroup:'СВТ',
+    genderGroup:'ПЕР', poseGroup:'ПЕР', ethnicGroup:'ПЕР', ageGroup:'ПЕР',
+    camGroup:'КАМ',    bgGroup:'ФОН',   injuryGroup:'БЫП',
+    moodGroup:'НАС',   styleGroup:'РНД',
+  };
+  const SLIDER_LABEL = {
+    slWet:'Намокание', slSnow:'Снег',        slWind:'Ветер',
+    slDust:'Пыль',     slWear:'Износ ткани', slDamage:'Повреждения',
+  };
+
+  /* ── форматирование ── */
+  function ts() {
+    const d  = new Date();
+    const p2 = n => String(n).padStart(2,'0');
+    const p3 = n => String(n).padStart(3,'0');
+    return `${p2(d.getHours())}:${p2(d.getMinutes())}:${p2(d.getSeconds())}.${p3(d.getMilliseconds())}`;
+  }
+
+  /* ── публичный API ── */
+  window.dnaLog = function(category, detail) {
+    _seq++;
+    LOG.push({ seq:_seq, time:ts(), cat:category, detail });
+    const btn = document.getElementById('btnLog');
+    if(btn && !btn.classList.contains('has-events')) btn.classList.add('has-events');
+  };
+
+  /* ═══════════════════════════════════════
+     ПЕРЕХВАТЧИКИ СОБЫТИЙ (bubble phase —
+     классы уже обновлены существующими
+     хендлерами к моменту срабатывания)
+  ═══════════════════════════════════════ */
+
+  /* ── Чипы основных групп ── */
+  document.addEventListener('click', e => {
+    const chip = e.target.closest('.chip');
+    if(!chip) return;
+    if(chip.classList.contains('neg-chip')) return;
+    const groupEl = chip.closest('[id]');
+    if(!groupEl) return;
+    const sec   = GROUP_SECTION[groupEl.id] || groupEl.id;
+    const label = chip.textContent.replace(/\s+/g,' ').trim().slice(0,40);
+    const isOn  = chip.classList.contains('on') || chip.classList.contains('on-teal') || chip.classList.contains('on-byp');
+    dnaLog('ЧИП', `${sec} · «${label}» → ${isOn ? 'ON' : 'OFF'}`);
+  });
+
+  /* ── Негативные чипы ── */
+  document.addEventListener('click', e => {
+    const chip = e.target.closest('.neg-chip');
+    if(!chip) return;
+    const isOn = chip.classList.contains('on');
+    dnaLog('НЕГ·ЧИП', `«${chip.textContent.trim().slice(0,40)}» → ${isOn ? 'ON' : 'OFF'}`);
+  });
+
+  /* ── Сворачивание/разворачивание секций ── */
+  document.addEventListener('click', e => {
+    const sh = e.target.closest('.sh.collapsible, .sh-bypass.collapsible');
+    if(!sh) return;
+    const nowCollapsed = sh.classList.contains('collapsed');
+    const titleRow = sh.querySelector('.sh-title-row');
+    const title = titleRow
+      ? [...titleRow.childNodes]
+          .filter(n => n.nodeType === Node.TEXT_NODE)
+          .map(n => n.textContent.trim()).filter(Boolean).join('')
+      : sh.id || '?';
+    dnaLog('СЕКЦИЯ', `«${title || sh.id}» → ${nowCollapsed ? 'свёрнута' : 'развёрнута'}`);
+  });
+
+  /* ── Слайдеры (дебаунс 400 мс) ── */
+  const _slTimers = {};
+  document.addEventListener('input', e => {
+    if(e.target.type !== 'range') return;
+    const id  = e.target.id;
+    const val = e.target.value;
+    clearTimeout(_slTimers[id]);
+    _slTimers[id] = setTimeout(() => {
+      dnaLog('СЛАЙДЕР', `${SLIDER_LABEL[id] || id} → ${val}`);
+    }, 400);
+  });
+
+  /* ── Текстовые поля (дебаунс 1.5 с) ── */
+  const _taTimers = {};
+  document.addEventListener('input', e => {
+    if(e.target.tagName !== 'TEXTAREA') return;
+    const id  = e.target.id;
+    const val = e.target.value;
+    clearTimeout(_taTimers[id]);
+    _taTimers[id] = setTimeout(() => {
+      const name = id === 'charDesc'   ? 'Описание персонажа'
+                 : id === 'extraNotes' ? 'Доп. примечания'
+                 : id === 'negCustom'  ? 'Кастомный негатив'
+                 : id;
+      dnaLog('ТЕКСТ', `${name} · ${val.length} симв.`);
+    }, 1500);
+  });
+
+  /* ── Спецкнопки ── */
+  document.addEventListener('click', e => {
+    const btn = e.target.closest('#btnMode, #btnWrap, #btnNegSelectAll');
+    if(!btn) return;
+    if(btn.id === 'btnMode') {
+      setTimeout(() => {
+        const isShort = document.getElementById('btnModeIcon')?.style.fontSize !== '8px';
+        dnaLog('РЕЖИМ', `Формат промпта → ${isShort ? 'краткий' : 'детальный'}`);
+      }, 0);
+    } else if(btn.id === 'btnWrap') {
+      const wrapping = btn.classList.contains('stamp-active');
+      dnaLog('РЕЖИМ', `Перенос строк → ${wrapping ? 'включён' : 'выключен'}`);
+    } else if(btn.id === 'btnNegSelectAll') {
+      // State is stored in btn.title (the button contains an SVG icon, not text).
+      // After toggleAllNegative() runs, updateNegSelectAllBtn() has already
+      // updated the title to reflect the new state.
+      const allNowOn = btn.title.includes('Снять');
+      dnaLog('НЕГ', allNowOn ? 'Все чипы выбраны (Select All)' : 'Все чипы сняты (Clear All)');
+    }
+  });
+
+  /* ═══════════════════════════════════════
+     ОБЁРТКИ ФУНКЦИЙ
+  ═══════════════════════════════════════ */
+  function _wrap(fnName, before) {
+    const orig = window[fnName];
+    if(typeof orig !== 'function') return;
+    window[fnName] = function(...args) {
+      try { before.apply(this, args); } catch(_) {}
+      return orig.apply(this, args);
+    };
+  }
+
+  _wrap('savePreset', () => {
+    const name = document.getElementById('deloInput')?.value?.trim()
+                 || window.currentPresetName || '(без имени)';
+    dnaLog('ДЕЛО', `Сохранено «${name}»`);
+  });
+  _wrap('loadPreset', i => {
+    try { dnaLog('ДЕЛО', `Загружено «${(window.loadPresets?.() || [])[i]?.name || '#'+i}»`); }
+    catch(_) { dnaLog('ДЕЛО', `Загружено #${i}`); }
+  });
+  _wrap('duplicatePreset', i => {
+    try { dnaLog('ДЕЛО', `Дублировано «${(window.loadPresets?.() || [])[i]?.name || '#'+i}»`); }
+    catch(_) { dnaLog('ДЕЛО', `Дублировано #${i}`); }
+  });
+  _wrap('deletePreset', i => {
+    try { dnaLog('ДЕЛО', `Удалено «${(window.loadPresets?.() || [])[i]?.name || '#'+i}»`); }
+    catch(_) { dnaLog('ДЕЛО', `Удалено #${i}`); }
+  });
+  _wrap('resetState',       () => dnaLog('СБРОС',   'Полный сброс состояния приложения'));
+  _wrap('restoreSnapshot',  i  => {
+    const items = [...document.querySelectorAll('#historyStrip .hist-item')];
+    const snap  = items[i];
+    dnaLog('ИСТОРИЯ', `Снапшот ${i+1} «${snap?.title || snap?.textContent?.trim() || '?'}» восстановлен`);
+  });
+  _wrap('toggleAllSections', () => {
+    const anyOpen = [...document.querySelectorAll('.sh.collapsible')]
+      .some(sh => !sh.classList.contains('collapsed'));
+    dnaLog('СЕКЦИИ', anyOpen ? 'Все секции свёрнуты' : 'Все секции развёрнуты');
+  });
+  _wrap('copyPrompt',   () => dnaLog('КОПИЯ', 'Основной промпт'));
+  _wrap('copyAll',      () => dnaLog('КОПИЯ', 'Промпт + --no (Nano Banana формат)'));
+  _wrap('copyNegative', () => dnaLog('КОПИЯ', 'Негативный промпт'));
+
+  /* ═══════════════════════════════════════
+     COPY LOG
+  ═══════════════════════════════════════ */
+  window.copyLog = function() {
+    if(!LOG.length) { showToast('— лог пуст —'); return; }
+    const now    = new Date();
+    const p2     = n => String(n).padStart(2,'0');
+    const date   = `${p2(now.getDate())}.${p2(now.getMonth()+1)}.${now.getFullYear()}`;
+    const durSec = Math.round((Date.now() - T0) / 1000);
+    const border = '═'.repeat(62);
+    const header = [
+      border,
+      '   DNA Hero · SESSION LOG',
+      `   Дата: ${date}  ·  Сессия: ${Math.floor(durSec/60)}м ${durSec%60}с  ·  Событий: ${LOG.length}`,
+      border,
+    ].join('\n');
+    const body = LOG.map(e =>
+      `[${e.time}]  #${String(e.seq).padStart(3)}  ${e.cat.padEnd(11)}  ${e.detail}`
+    ).join('\n');
+    const text = header + '\n\n' + body + '\n';
+    navigator.clipboard.writeText(text)
+      .then(() => showToast(`✓ Лог скопирован · ${LOG.length} событий`))
+      .catch(() => {
+        const ta = document.createElement('textarea');
+        ta.value = text;
+        ta.style.cssText = 'position:fixed;opacity:0;pointer-events:none';
+        document.body.appendChild(ta);
+        ta.select();
+        try   { document.execCommand('copy'); showToast('✓ Лог скопирован (fallback)'); }
+        catch (err) { showToast('✗ Не удалось скопировать лог'); }
+        document.body.removeChild(ta);
+      });
+  };
+
+  dnaLog('СТАРТ', 'Приложение инициализировано · DNA Hero v1');
+
+})();
+
+</script>
+</body>
+</html>
