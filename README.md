@@ -114,7 +114,7 @@ RAW без стилизации · RAW + stylize 0 (сухой) · Stylize 200 (
 
 Проект в активной разработке 🚀 Нашли баг? Есть идея?
 
-- ✈️ **Telegram:** [@lexbayart](https://t.me/lexbayart)
+- ✈️ **Telegram:** [@lexbay](https://t.me/lexbay)
 - 🐛 **GitHub Issues:** [Открыть issue](https://github.com/lexbayart/dna-hero/issues)
 
 ---
