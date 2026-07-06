@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DNA HERO · Character Turnaround · СССР 1950–60е · v21</title>
+<title>DNA HERO · Character Turnaround · СССР 1950–60е · v22</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=Courier+Prime:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
@@ -673,9 +673,11 @@ body.t-delo .bg-chip.on:hover { background:var(--s4); border-color:var(--acc); }
 }
 .hist-item {
   font-family:var(--fm); font-size:8px; letter-spacing:.08em;
-  width:28px; height:22px; display:inline-flex; align-items:center; justify-content:center;
+  min-width:28px; max-width:140px; height:22px; padding:0 6px;
+  display:inline-flex; align-items:center; justify-content:center;
   border:1px solid var(--border); background:var(--s2);
   color:var(--td); cursor:pointer; white-space:nowrap; flex-shrink:0;
+  overflow:hidden; text-overflow:ellipsis;
   transition:background-color .1s, border-color .1s, color .1s;
   user-select:none;
 }
@@ -2276,7 +2278,7 @@ function loadPreset(i) {
   EL.deloName.textContent = p.name;
   document.getElementById('deloField')?.classList.remove('unsaved');
   histCurrent = -1;
-  _lastAutoSerial = null;
+  _syncAutoState();
   showToast(`✓ Дело «${p.name}» загружено`);
 
   render();
@@ -2326,6 +2328,7 @@ function saveSnapshot(silent = false) {
   historyStack.push({ label, state: snap, prompt: promptText });
   if(historyStack.length > HIST_MAX) historyStack.shift();
   histCurrent = historyStack.length - 1;
+  _syncAutoState(); // защищаем только что закреплённую запись от автоматического затирания
   renderHistory();
   if(!silent) showToast('📌 Зафиксировано в истории');
 }
@@ -2350,6 +2353,7 @@ function renderHistory() {
    PIN AS PRESET — 📌 saves current state to a named Дело
 ═══════════════════════════════════════ */
 function pinAsPreset() {
+  saveSnapshot(); // фиксируем текущий момент в «Историю» — это и есть смысл кнопки 📌
   if(!deloDropdownEl.classList.contains('open')) toggleDeloDropdown();
   setTimeout(() => {
     const input = document.getElementById('deloInput');
@@ -2376,22 +2380,38 @@ let _pendingSection   = null;   // section currently being debounced
 let _lastSection      = null;   // section of the last written snapshot
 let _lastAutoSerial   = null;
 
+// Отпечаток текущего состояния — используется автозаписью для "ничего не изменилось",
+// а также ручными операциями (📌, откат, загрузка дела), чтобы "предупредить" автоматику.
+function _stateSerial() {
+  return JSON.stringify([
+    EL.charDesc.value, EL.extraNotes.value, EL.negCustom.value,
+    S.gender, S.pose, S.ethnic, S.ageType, S.mood,
+    S.bg, S.light, S.cam, S.ar, S.style,
+    [...S.views].sort().join(','), [...S.injuries].sort().join(','),
+    S.wet, S.snow, S.wind, S.dust, S.wear, S.damage,
+    [...negActive].sort().join(',')
+  ]);
+}
+
+// Сообщить автоматике "сейчас произошло что-то не через обычное редактирование"
+// (ручное закрепление, откат к старой записи, загрузка дела, сброс) —
+// иначе она позже сработает вслепую по устаревшим данным и испортит историю.
+function _syncAutoState() {
+  clearTimeout(_autoSnapTimer);
+  _pendingSection = null;
+  _lastSection    = null;
+  _lastAutoSerial = _stateSerial();
+}
+
 function scheduleAutoSnapshot(sectionId) {
   if(sectionId) _pendingSection = sectionId;
   clearTimeout(_autoSnapTimer);
   _autoSnapTimer = setTimeout(() => {
-    const serial = JSON.stringify([
-      EL.charDesc.value, EL.extraNotes.value, EL.negCustom.value,
-      S.gender, S.pose, S.ethnic, S.ageType, S.mood,
-      S.bg, S.light, S.cam, S.ar, S.style,
-      [...S.views].sort().join(','), [...S.injuries].sort().join(','),
-      S.wet, S.snow, S.wind, S.dust, S.wear, S.damage,
-      [...negActive].sort().join(',')
-    ]);
+    if(!_pendingSection) return; // ничего реально не редактировалось — нечего записывать
+    const serial = _stateSerial();
     if(serial === _lastAutoSerial) return;
     _lastAutoSerial = serial;
-    const sec = _pendingSection || '···';
-    _writeAutoSnap(sec);
+    _writeAutoSnap(_pendingSection);
   }, 600);
 }
 
@@ -2417,6 +2437,7 @@ function _writeAutoSnap(sec) {
   renderHistory();
 }
 
+
 function restoreSnapshot(i) {
   const snap = historyStack[i];
   if(!snap) return;
@@ -2424,6 +2445,7 @@ function restoreSnapshot(i) {
   applyStateEntry(snap.state);
   // Don't clear currentPresetName — if a preset was loaded, it stays as context.
   // checkUnsaved() inside render() will mark it dirty if state diverged.
+  _syncAutoState(); // просмотр старой записи — это не "редактирование", автоматика не должна ничего дописывать позже
   renderHistory();
   render();
   showToast('↩ История: снапшот ' + (i + 1));
@@ -2974,7 +2996,7 @@ function resetState() {
   document.getElementById('deloField')?.classList.remove('unsaved');
   historyStack = [];
   histCurrent  = -1;
-  _lastAutoSerial = null;
+  _syncAutoState();
   renderHistory();
 
   promptMode = 'detailed';
